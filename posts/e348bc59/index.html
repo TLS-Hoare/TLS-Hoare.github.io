@@ -1,0 +1,763 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="记录博客搭建从0到1的详细全过程">
+  <meta name="author" content="TLS">
+  <meta name="keywords" content="ACM, Algorithm, CTF">
+  
+  <title>记录一下博客搭建历程 - TLS&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/oopstls.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"oopstls.xyz","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"662be03e63d68d42e11056e174b1af40","google":"UA-149292816-2","gtag":"G-M35ZXK3R5R","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"7tjF5JCu7wQ1ab33DKTPp7ho-MdYXbMMI","app_key":"Wjpwi3j1A5dxyOWySsj5KKoR","server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>TLS</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/posts/default_banner.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="记录一下博客搭建历程">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-06-10 18:37" pubdate>
+        2020年6月10日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      36
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">记录一下博客搭建历程</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年10月17日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>19年8月份开始部署自己的独立博客到现在已经过去了10个月了，这期间断断续续做了很多修改，也踩了很多坑。这几天换了个域名，换了个主题，完全重新部署了博客，现在用起来感觉还不错，应该会持续用一段时间，所以现在写这篇文章总结一下博客部署的细节过程，避免我这个记性不好的人过段时间就不记得自己是怎么操作的了😂，网上有很多大佬写的Github Pages + hexo部署博客的教程，我这里主要是记录我自己的操作步骤和一些我自己的理解。我不是一个专业的前端程序员，所以如果在看这篇文章的大佬发现了错误，请指出。</p>
+<p>最早部署博客的时候，我还是一个大一的学生，很多东西都不太懂，在网上看了很多关于部署博客文章，明白了部署博客的方法之一就是用现有的框架，然后自己做个性化的调整，找了一圈发现目前比较流行、<u>搭建简单</u>适合我这个蒟蒻的框架是<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">hexo</a>，看了官方文档和其他大佬的搭建教程，就开始找好看的主题了，去年部署使用了<a target="_blank" rel="noopener" href="https://blinkfox.github.io/">闪烁之狐</a>大佬的<a target="_blank" rel="noopener" href="https://blinkfox.github.io/2018/09/28/qian-duan/hexo-bo-ke-zhu-ti-zhi-hexo-theme-matery-de-jie-shao/">matery</a>主题，作为一个喜新厌旧的渣男这么几个月过去了有一些视觉疲劳了😂，现在改成了<a target="_blank" rel="noopener" href="https://zkqiang.cn/">zkqing</a>大佬的<a target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/">Fluid</a>，这个简洁又有设计感的风格，很是喜欢。</p>
+<blockquote>
+<p>hexo是一个基于nodejs的静态站点生成框架，不仅搭建简单，还可以将生成的博客直接上传到<a href="github.com">github</a>、<a href="gitlab.com">gitlab</a>、<a href="gitee.com">gitee</a>这些提供Pages服务的平台(下面会对Pages服务做介绍)服务建立静态站点，而且社区生态活跃，有大量有趣实用的插件可供下载。通过hexo，即使我们不怎么会HTML也可以用markdown写出工整的文章，markdown是一种轻量级的标记语言，文件扩展名是“md”，就是在项目文件里常见的README.md文件使用的格式。markdown的语法超级超级超级简单，没有哪个正常人20分钟还学不会基础语法的吧，不会吧，不会吧。话说回来markdown只是一个语法规范，所以我们还需要一个工具来辅助我们编写markdown文件，强烈推荐<a target="_blank" rel="noopener" href="https://typora.io/">Typora</a>，不用像vscode那样分屏预览，所见即所得的书写体验是真的awesome。</p>
+</blockquote>
+<blockquote>
+<p>“You can create a website directly from a GitHub repository.”，这是<a target="_blank" rel="noopener" href="https://help.github.com/cn/github/working-with-github-pages/getting-started-with-github-pages">Github Pages官方文档</a>里面的介绍，我们可以直接从Github仓库创建静态网站，通过Github Pages，我们就可以不用自己维护一台服务器来托管博客，省钱又省心。</p>
+</blockquote>
+<blockquote>
+<p>全程使用的是window10环境。</p>
+</blockquote>
+<hr>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h2 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h2><p>在这里下载适合自己的<a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">nodejs</a>。</p>
+<p>安装过程一路<code>next</code>就可以了，但是如果你觉得不放心那就自己选择。</p>
+<p>安装完成后打开终端，输入：</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">node -v
+<span class="token function">npm</span> -v<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+<p>看到输出版本号就可以了。(<code>-v</code>改成<code>--version</code>也是一样的)</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Npm">npm</a>是nodejs默认的包管理工具，我们需要用npm来安装hexo以及一些插件。</p>
+</blockquote>
+<h3 id="添加国内镜像"><a href="#添加国内镜像" class="headerlink" title="添加国内镜像"></a>添加国内镜像</h3><p>如果没有梯子的话，可以使用阿里的国内镜像下载，这样速度会好很多。</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> config <span class="token builtin class-name">set</span> registry https://registry.npm.taobao.org<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<p>这条命令会写入<code>https://registry.npm.taobao.org</code>到<code>C:\%USERPROFILE%\</code>目录下的<code>.npmrc</code>文件，也可以直接用文本编辑器编辑<code>.npmrc</code>文件。</p>
+<hr>
+<h2 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h2><p>Git是当今最流行也是最好用的版本控制工具之一，我们在这里使用Git是为了把本地生成的静态页面推送到github(也可以使用其他平台，或者同时使用)。</p>
+<p>在这里下载适合自己的<a target="_blank" rel="noopener" href="https://git-scm.com/downloads">Git</a>。</p>
+<p>安装过程还是一路<code>next</code>就可以了，但是如果你觉得不放心那就自己看着办。</p>
+<p>安装完成后打开终端，输入：</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> --verison<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="添加代理"><a href="#添加代理" class="headerlink" title="添加代理"></a>添加代理</h3><p>git没有国内镜像(这个要是有国内镜像那是真的强/狗头)，如果没有梯子的话，那<code>git clone</code>可能会很慢，有梯子可以设置一下代理，如下：</p>
+<h4 id="全局代理"><a href="#全局代理" class="headerlink" title="全局代理"></a>全局代理</h4><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># socks5协议，1080端口修改成自己的本地代理端口</span>
+<span class="token function">git</span> config --global http.proxy socks5://127.0.0.1:1080
+<span class="token function">git</span> config --global https.proxy socks5://127.0.0.1:1080<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+
+<h4 id="仅代理github"><a href="#仅代理github" class="headerlink" title="仅代理github"></a>仅代理github</h4><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># socks5协议，1080端口修改成自己的本地代理端口</span>
+<span class="token function">git</span> config --global http.https://github.com.proxy socks5://127.0.0.1:1080
+<span class="token function">git</span> config --global https.https://github.com.proxy socks5://127.0.0.1:1080<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+
+<p>上面的命令会在<code>C:\%USERPROFILE%\</code>目录下的<code>.gitconfig</code>文件写入</p>
+<div class="code-wrapper"><pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">[</span>http <span class="token string">"https://github.com"</span><span class="token punctuation">]</span>
+	proxy = socks5<span class="token operator">:</span><span class="token comment">//127.0.0.1:1080</span>
+<span class="token punctuation">[</span>https <span class="token string">"https://github.com"</span><span class="token punctuation">]</span>
+	proxy = socks5<span class="token operator">:</span><span class="token comment">//127.0.0.1:1080</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>用编辑器写入也是可以的。</p>
+<h3 id="连接Github"><a href="#连接Github" class="headerlink" title="连接Github"></a>连接Github</h3><h4 id="配置个人信息"><a href="#配置个人信息" class="headerlink" title="配置个人信息"></a>配置个人信息</h4><p>打开git bash，输入如下命令，注意替换用户名和邮箱。</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config --global user.name <span class="token string">"username"</span>
+<span class="token function">git</span> config --global user.email <span class="token string">"email"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+<p>写入的和前面添加代理的是同一个配置文件，同样也可以用编辑器写入。</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>user<span class="token punctuation">]</span>
+	name <span class="token operator">=</span> username
+	email <span class="token operator">=</span> email<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+
+<h4 id="生成SSH"><a href="#生成SSH" class="headerlink" title="生成SSH"></a>生成<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Secure_Shell">SSH</a></h4><p>执行如下命令</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen -t rsa -C <span class="token string">"email"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<p>这个命令会在你的用户文件夹下的<code>.ssh</code>文件夹下生成<code>id_rsa</code>和<code>id_rsa.pub</code>文件，前者是你的私钥，后者是公钥，接下来就是把公钥提交到Github上，这样就可以安全的传输了。</p>
+<p>使用命令<code>cat ~/.ssh/id_rsa.pub</code>，或者用编辑器打开<code>id_rsa.pub</code>文件都可以，复制里面的全部内容。</p>
+<p>回到github，点击如下图所示的<code>setting</code>，然后点击<code>SSH and GPG keys</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/blog/image-20200611163001280.png" srcset="/img/loading.gif" lazyload alt="ssh"></p>
+<p>然后点击<code>New SSH Key</code>，名字自己决定，内容就粘贴刚刚复制的公钥。</p>
+<p>最后执行下面的命令查看是否成功</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> -T git@github.com<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/blog/image-20200611163517010.png" srcset="/img/loading.gif" lazyload alt="check"></p>
+<p>如上图所示，输出了<code>Hi username!</code>，那么就成功了。</p>
+<hr>
+<h2 id="创建博客仓库"><a href="#创建博客仓库" class="headerlink" title="创建博客仓库"></a>创建博客仓库</h2><p>不会还有人需要注册github的详细步骤吧，不会吧，不会吧。</p>
+<p>在github首页点击右上角的<code>+</code>号，选择<code>New repository</code></p>
+<p><img src="https://gitee.com/oopstls/PicBed/raw/master/blog/blog/image-20200610215943623.png" srcset="/img/loading.gif" lazyload alt="新建仓库"></p>
+<p>然后在如下页面中填写仓库名(Repository name)</p>
+<blockquote>
+<p>**一般这里的格式都是且必须是username.github.io (username就是前面<code>Owner</code>里面显示的名字)**，原因如下。</p>
+<p>仓库名命名为<code>username.github.io</code>那么访问通过该仓库创建的博客的默认域名就是<code>username.github.io</code>。</p>
+<p>仓库名命名为<code>xxx.github.io</code>，访问地址就是<code>username.github.io/xxx.github.io</code>。</p>
+</blockquote>
+<p>我的username是oopstls，但是这里我用<code>sameple.github.io</code>作为样例。</p>
+<p><code>Description</code>是对这个仓库的描述。</p>
+<p><strong>后面的<code>README</code>一定要勾选，不然后面不能初始化Github Pages。</strong></p>
+<p><em><code>Imgbot</code>是我用来给我的github图床里面的图片压缩的，没有使用过就没有这个选项，不影响后序操作。</em></p>
+<p>然后点击下面的绿色按钮<code>Create repository</code>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/blog/image-20200611143035975.png" srcset="/img/loading.gif" lazyload alt="创建博客"></p>
+<p>然后点击仓库的<code>setting</code>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/blog/image-20200611143317463.png" srcset="/img/loading.gif" lazyload alt="setting"></p>
+<p>向下翻找到<code>Github Pages</code>，点击<code>choose a theme</code>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/blog/image-20200611145834783.png" srcset="/img/loading.gif" lazyload alt="choose a theme"></p>
+<p>然后直接点击<code>select</code>，不用去选主题了，这里只是通过选主题激活Github Pages</p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/blog/image-20200611150027154.png" srcset="/img/loading.gif" lazyload alt="select"></p>
+<p>然后在刚刚Github Pages设置的位置就会显示你的默认链接。</p>
+<p>点击进去就是Github Pages为你生成的个人页面。</p>
+<hr>
+<h2 id="安装初始化Hexo"><a href="#安装初始化Hexo" class="headerlink" title="安装初始化Hexo"></a>安装初始化Hexo</h2><h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><p>打开一个已经配置好可以执行npm命令行终端，可以直接用前面安装的git自带的Git Bash。</p>
+<p>输入如下命令安装<b>hexo命令行工具<b/>。</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> i hexo-cli -g<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/blog/image-20200611154949704.png" srcset="/img/loading.gif" lazyload alt="install"></p>
+<p>输入命令后如上图所示就安装成功了，也可以再输入命令<code>hexo -v</code>看看。</p>
+<h3 id="初始化Hexo"><a href="#初始化Hexo" class="headerlink" title="初始化Hexo"></a>初始化Hexo</h3><p>在你想用来存放博客文件的存储路径上新建一个文件夹，这个文件夹用来存储博客文件，比如<code>D:\Blog\</code>。</p>
+<p>然后再这个目录下打开终端，或者<code>cd /d/blog</code>(注意这里是我的目录路径，以当前自己的为准，不能随意复制)</p>
+<p>然后执行下面这条命令初始化你的博客文件。</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hexo init sample <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<p>sample是生成后存储文件的文件夹</p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/blog/image-20200611160633299.png" srcset="/img/loading.gif" lazyload alt="INFO"></p>
+<p>命令执行完成显示上图所示内容就可以了。</p>
+<p>接着就执行<code>npm install</code>安装必要的组件。</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<p>安装完成没有报错的话，那基本环境就配置好了。</p>
+<p>介绍几个后面会常用的命令，也可以在<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/commands">官方文档</a>查看更多。</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hexo clean <span class="token comment">#清除已经生成的静态站点文件，最好每次生成之前都clean一下</span>
+hexo generate <span class="token comment">#生成静态站点文件</span>
+hexo g <span class="token comment">#上一个命令的简写</span>
+hexo server <span class="token comment">#启动服务器。默认情况下，访问网址为： http://localhost:4000/</span>
+hexo s <span class="token comment">#上一个命令的简写</span>
+hexo deploy <span class="token comment">#部署网站，需要先generate生成静态文件才能部署</span>
+hexo clean <span class="token operator">&amp;&amp;</span> hexo g <span class="token operator">&amp;&amp;</span> hexo s <span class="token comment">#本地测试的时候可以这么写</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>现在执行<code>hexo g &amp;&amp; hexo s</code></p>
+<p>然后打开浏览器，在地址栏输入<code>localhost:4000</code>，就可以看到初始博客页面了。</p>
+<p><img src="https://gitee.com/oopstls/PicBed/raw/master/blog/blog/image-20200611165033743.png" srcset="/img/loading.gif" lazyload alt="local"></p>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><h3 id="根目录"><a href="#根目录" class="headerlink" title="根目录"></a>根目录</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">├── _config.yml				<span class="token comment">#博客配置文件</span>
+├── node_modules			
+├── package-lock.json
+├── package.json
+├── scaffolds				<span class="token comment">#草稿、文章模板、页面模板</span>
+├── <span class="token builtin class-name">source</span>					<span class="token comment">#资源文件夹</span>
+└── themes					<span class="token comment">#主题文件夹</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h3 id="source目录下"><a href="#source目录下" class="headerlink" title="source目录下"></a>source目录下</h3><p><em>没有的文件夹不是自动生成的，而是推荐使用方式（后面介绍）</em></p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">├── source
+│   ├── CNAME							#自定义域名
+│   ├── _data							#覆盖主题配置
+│   │   ├── fluid_config.yml			#fluid主题覆盖配置
+│   │   └── fluid_static_prefix.yml
+│   ├── _posts							#文章存储文件夹
+│   │   └── helloworld.md
+│   ├── about							#自定义关于页
+│   │   └── index.md
+│   └── img								#作为主题的图片资源文件夹
+│       ├── avatar.png
+│       ├── banner
+│       ├── favicon.png<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+
+
+<h1 id="个性化"><a href="#个性化" class="headerlink" title="个性化"></a>个性化</h1><h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>前面hexo初始化完成之后，默认使用的是<code>landspace</code>主题。除了自带的主题外，<a target="_blank" rel="noopener" href="https://hexo.io/themes/">hexo官网</a>还罗列了很多好看的主题可供查看和使用。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/note/POCC/image-20201014164742396.png" srcset="/img/loading.gif" lazyload alt="image-20201014164742396"></p>
+<p>选择自己喜欢的主题，下载至<code>/theme</code>文件夹，然后再<code>/_config.yml</code>文件中修改<code>theme: landspace</code>，将landspace改为主题存储的文件夹名。</p>
+<p>在hexo5之后，可以直接使用npm命令下载主题，但是下载的主题是存放在<code>/node_modules</code>文件夹下的，需要自定义修改一些东西的时候不是很方便(只改配置文件可以在<code>/source/_data/</code>下覆盖主题配置文件)。</p>
+<p>不同的主题配置方式各不相同，hexo官网列出的主题大多都有较详细的配置说明，可以在主题的github仓库查看README.md文件。</p>
+<p>我现在(至文章最后一次更新)使用的是<a target="_blank" rel="noopener" href="https://github.com/fluid-dev/hexo-theme-fluid">Fluid</a>，主题安装过程以及配置过程就不具体演示了，<a target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/guide/">官方说明非常详细</a>。</p>
+<h1 id="生成以及上传"><a href="#生成以及上传" class="headerlink" title="生成以及上传"></a>生成以及上传</h1><p>前面已经介绍过博客的生成命令。</p>
+<p>这里再贴一下。</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hexo clean <span class="token comment">#清除已经生成的静态站点文件，最好每次生成之前都clean一下</span>
+hexo generate <span class="token comment">#生成静态站点文件,生成内容在根目录下的public文件夹内</span>
+hexo g <span class="token comment">#上一个命令的简写</span>
+hexo server <span class="token comment">#启动服务器。默认情况下，访问网址为： http://localhost:4000/</span>
+hexo s <span class="token comment">#上一个命令的简写</span>
+hexo deploy <span class="token comment">#部署网站，需要先generate生成静态文件才能部署</span>
+hexo clean <span class="token operator">&amp;&amp;</span> hexo g <span class="token operator">&amp;&amp;</span> hexo s <span class="token comment">#本地测试的时候可以这么写</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p><code>hexo deploy</code>需要先安装对应平台的deploy插件</p>
+<p>如github pages，需要执行下命令安装插件。</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> hexo-deployer-git --save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<p>当本地测试完成之后，执行<code>hexo d</code>即可上传至仓库。</p>
+<h1 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h1><p>github pages默认的域名是<code>username.github.io</code>。</p>
+<p>建议改为自己的域名的几个原因：</p>
+<ol>
+<li>不够个性化</li>
+<li>不能做cdn加速(国内访问gituhb.io很慢)</li>
+<li>上一条说访问慢，现在貌似已经被墙了(202008xx)，不改域名想访问只能修改自己本机的DNS。</li>
+</ol>
+<h2 id="购买域名"><a href="#购买域名" class="headerlink" title="购买域名"></a>购买域名</h2><p>在国内几个大厂都可以购买，如阿里云、腾讯云、百度云…</p>
+<p>购买域名的详细过程大概就是实名、选域名、买域名。</p>
+<p>无脑操作，具体过程就不赘述了。</p>
+<h2 id="Cloudflare"><a href="#Cloudflare" class="headerlink" title="Cloudflare"></a>Cloudflare</h2><p>我这里以阿里云为例</p>
+<h3 id="注册cloudflare"><a href="#注册cloudflare" class="headerlink" title="注册cloudflare"></a>注册<a target="_blank" rel="noopener" href="https://cloudflare.com/">cloudflare</a></h3><p>注册过程就不详细展示了</p>
+<h3 id="添加站点"><a href="#添加站点" class="headerlink" title="添加站点"></a>添加站点</h3><p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/note/POCC/image-20201014174143276.png" srcset="/img/loading.gif" lazyload alt="image-20201014174143276"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/note/POCC/image-20201014174633561.png" srcset="/img/loading.gif" lazyload alt="image-20201014174633561"></p>
+<p>填写购买的域名，然后点击添加站点，然后无脑下一步，直到提示修改DNS服务器。</p>
+<h3 id="修改DNS服务器"><a href="#修改DNS服务器" class="headerlink" title="修改DNS服务器"></a>修改DNS服务器</h3><p>打开阿里云域名控制台，点击准备好的域名。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/note/POCC/image-20201014175006245.png" srcset="/img/loading.gif" lazyload alt="image-20201014175006245"></p>
+<p>然后点击DNS修改、修改DNS服务器</p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/note/POCC/image-20201014175611777.png" srcset="/img/loading.gif" lazyload alt="image-20201014175611777"></p>
+<p>将刚才Cloudflare给出的两个域名解析服务器粘贴至这里。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/note/POCC/image-20201014181139698.png" srcset="/img/loading.gif" lazyload alt="image-20201014181139698"></p>
+<p>点击确定之后返回Cloudflare点击检查。</p>
+<p>等cloudflare检查完成之后执行下面的操作，这个过程会等几分钟到几个小时不等。</p>
+<h3 id="解析加速"><a href="#解析加速" class="headerlink" title="解析加速"></a>解析加速</h3><p>上面点击DNS，然后添加记录，两个记录都是CNAME，分别填入域名和www。确定后面的代理状态为开就可以了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/note/POCC/image-20201014180747647.png" srcset="/img/loading.gif" lazyload alt="image-20201014180747647"></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%97%A5%E5%B8%B8/">日常</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%97%A5%E5%B8%B8/%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2/">博客部署</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/blog/">blog</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Github-Pages/">Github Pages</a>
+                    
+                      <a class="hover-with-bg" href="/tags/hexo/">hexo</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/5b4e49b2/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">几个排序算法的模板略解</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/abe46ed/">
+                        <span class="hidden-mobile">POJ 2387 Til the Cows Come Home</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"7tjF5JCu7wQ1ab33DKTPp7ho-MdYXbMMI","appKey":"Wjpwi3j1A5dxyOWySsj5KKoR","placeholder":"说点什么  PS:昵称填入QQ号自动获取QQ昵称和QQ头像，邮箱用以获取回复通知","path":"window.location.pathname","avatar":"retro","meta":["nick","mail","link"],"pageSize":30,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://7tjf5jcu.api.lncldglobal.com:443","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"requiredFields":["nick"],"visitor":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?662be03e63d68d42e11056e174b1af40";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+    <!-- Google Analytics -->
+    <script defer>
+      window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) };
+      ga.l = +new Date;
+      ga('create', 'UA-149292816-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+  
+
+  
+    <!-- Google gtag.js -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M35ZXK3R5R"></script>
+    <script defer>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-M35ZXK3R5R');
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    <!-- leancloud -->
+    <span id="/posts/e348bc59/" class="leancloud_visitors" data-flag-title="记录一下博客搭建历程">
+      <!-- <hide>
+        <em class="post-meta-item-text">阅读量 </em></hide>
+        <i class="leancloud-visitors-count"></i>
+      </hide> -->
+    </span>
+  
+
+
+
+
+  
+<script src="/js/oopstls.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

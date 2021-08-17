@@ -1,0 +1,782 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="每天打卡怪麻烦的，看看能不能每天到点自动打卡">
+  <meta name="author" content="TLS">
+  <meta name="keywords" content="ACM, Algorithm, CTF">
+  
+  <title>学习通自动打卡 - TLS&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/oopstls.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"oopstls.xyz","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"662be03e63d68d42e11056e174b1af40","google":"UA-149292816-2","gtag":"G-M35ZXK3R5R","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"7tjF5JCu7wQ1ab33DKTPp7ho-MdYXbMMI","app_key":"Wjpwi3j1A5dxyOWySsj5KKoR","server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>TLS</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/posts/default_banner.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="学习通自动打卡">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-02-11 00:00" pubdate>
+        2021年2月11日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      8.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      141
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">学习通自动打卡</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年8月17日 早上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <blockquote>
+<p>上学期开学前一段时间，学校就让我们在学习通上打卡，用来确定每个同学返校前的健康状况？这学期又是这样的操作，而且要求的更严格了，放寒假还天天被人催着打卡，就很无语。讲道理哪个同学有异常情况的话，当地相关部门会直接通报到学校的吧。所以我个人觉得这个打卡没什么意义，而且我天天宅在家里，应该也不会有什么异常情况，所以搞一个自动打卡应该没问题吧😂。</p>
+</blockquote>
+<h1 id="20220817"><a href="#20220817" class="headerlink" title="20220817"></a>20220817</h1><p><mark>昨天晚上通知多了个“每日健康上报”</mark></p>
+<p>代码已改，需要填写更多个人信息，签名那个地址需要手动抓包提取（应该可以自动从历史记录中获取，但是没时间写了）</p>
+<h1 id="更正"><a href="#更正" class="headerlink" title="更正"></a>更正</h1><p>昨天晚上测试的时候<code>学生健康登记</code>这个模块在首页是没有显示的，当时我以为不用打卡这个模块，只需要定位签到就行了，没想到今天它又回来了（佛了。</p>
+<p>解决这个问题只需要将注释的代码取消注释就可以了（下面代码已改</p>
+<p>直接用我这个代码的同学需要注意</p>
+<ul>
+<li>代码前面需要填写账号密码和地址（这个地址是用来定位打卡的</li>
+<li>学生健康登记打卡里面的formData中也有内容需要自己修改，我把需要改动的地方用‘📌’这个标签括起来了，这样比较显眼😂</li>
+<li>formData内容比较多，建议复制代码到本地，然后在编辑器中打开自动换行再修改（不然比较伤眼</li>
+</ul>
+<h1 id="分析打卡流程"><a href="#分析打卡流程" class="headerlink" title="分析打卡流程"></a>分析打卡流程</h1><p>要自动打卡应该分为两个步骤</p>
+<ol>
+<li>登录</li>
+<li>打卡</li>
+</ol>
+<p>平时打卡都是在学习通APP上进行的，所以直接在手机抓包分析。</p>
+<h2 id="登录流程"><a href="#登录流程" class="headerlink" title="登录流程"></a>登录流程</h2><p>APP到登录页面，然后打开抓包，然后登录，分析抓取到的请求，在众多请求包中一眼看到这个域名是passport开头的，点进来一看，好家伙，设置了13个cookie，多半是这个api没错了，再确认一下，看看请求内容，带了账号密码，那就是这个包在做登录操作了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210211110139434.png" srcset="/img/loading.gif" lazyload alt="image-20210211110139434"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210211105918543.png" srcset="/img/loading.gif" lazyload alt="image-20210211105918543"></p>
+<p>测试看看，把这个api拿到浏览器上试试，验证通过，那没问题了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210211110359697.png" srcset="/img/loading.gif" lazyload alt="image-20210211110359697"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210211110509172.png" srcset="/img/loading.gif" lazyload alt="image-20210211110509172"></p>
+<p>同时在刚刚手机上抓到的包中找到了学习通首页的url，后面的操作就可以在电脑上完成了，体验+。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212013902597.png" srcset="/img/loading.gif" lazyload alt="image-20210212013902597"></p>
+<p>再然后就是一步一步的模拟打卡过程（其实就用浏览器的f12里面的network功能就行了</p>
+<p>整个打卡过程貌似有四次post请求。</p>
+<p>从域名上看😂😂</p>
+<ul>
+<li>第一个是获取表单内容的（后面发现同时还设置了一个CheckCode来控制每天打卡一次</li>
+<li>第二个是用来计数的（并不知道计数什么，但是貌似不影响</li>
+<li>第三个是用来校验填写的内容是否合法的（不用校验也能进行第四步</li>
+<li>第四个是保存我们填写的信息的</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212015254019.png" srcset="/img/loading.gif" lazyload alt="image-20210212015254019"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212014858781.png" srcset="/img/loading.gif" lazyload alt="image-20210212014858781"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212015405610.png" srcset="/img/loading.gif" lazyload alt="image-20210212015405610"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212015539797.png" srcset="/img/loading.gif" lazyload alt="image-20210212015539797"></p>
+<p>经过一些测试，得出结论，我们只需要访问第一个api获取checkCode，然后用这个checkCode去第四个api保存我们的打卡信息就可以了。</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># -*- coding: utf8 -*-</span>
+<span class="token keyword">import</span> requests
+<span class="token keyword">import</span> re
+<span class="token keyword">from</span> urllib<span class="token punctuation">.</span>parse <span class="token keyword">import</span> quote
+
+params_login <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token string">'uname'</span><span class="token punctuation">:</span> <span class="token string">'账号'</span><span class="token punctuation">,</span>
+    <span class="token string">'code'</span><span class="token punctuation">:</span> <span class="token string">'密码'</span><span class="token punctuation">,</span>
+    <span class="token string">'loginType'</span><span class="token punctuation">:</span> <span class="token string">'1'</span><span class="token punctuation">,</span>
+    <span class="token string">'roleSelect'</span><span class="token punctuation">:</span> <span class="token string">'true'</span>
+<span class="token punctuation">&#125;</span>
+
+name <span class="token operator">=</span> <span class="token string">'姓名'</span>
+stunum <span class="token operator">=</span> <span class="token string">'学号'</span>
+college <span class="token operator">=</span> <span class="token string">'院系'</span>
+classs <span class="token operator">=</span> <span class="token string">'年级专业班级'</span>
+idc <span class="token operator">=</span> <span class="token string">'身份证号'</span>
+phone <span class="token operator">=</span> <span class="token string">'手机号'</span>
+address <span class="token operator">=</span> <span class="token string">'地址'</span>
+lin <span class="token operator">=</span> <span class="token string">'经度'</span>
+lat <span class="token operator">=</span> <span class="token string">'纬度'</span>
+first <span class="token operator">=</span> <span class="token string">'yyyy-mm-dd第一针疫苗'</span>
+second <span class="token operator">=</span> <span class="token string">'第二针'</span>
+signature <span class="token operator">=</span> <span class="token string">'http://pan-yz.chaoxing.com/thumbnail/origin/签名url'</span>
+
+api_save <span class="token operator">=</span> <span class="token string">'http://office.chaoxing.com/data/apps/forms/fore/user/save?lookuid=%s'</span>
+api_login <span class="token operator">=</span> <span class="token string">'https://passport2-api.chaoxing.com/v11/loginregister?cx_xxt_passport=json'</span>
+api_apply <span class="token operator">=</span> <span class="token string">'http://office.chaoxing.com/front/web/apps/forms/fore/apply?uid=83260789&amp;code=2iVkZKN1&amp;mappId=3820629&amp;appId=92610a6cf5e6415c8b4c2ac9c6a9a0f1&amp;appKey=DhXDEM4W331834H2&amp;id=1651&amp;enc=3e98bd89c8ce6bcabf08dbad8553f3c1&amp;state=1432&amp;formAppId=&amp;fidEnc=49b6a032fb2a0f2b'</span>
+
+
+<span class="token keyword">def</span> <span class="token function">login</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    resp <span class="token operator">=</span> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span>api_login<span class="token punctuation">,</span> params<span class="token operator">=</span>params_login<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>resp<span class="token punctuation">.</span>status_code <span class="token operator">==</span> <span class="token number">403</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">raise</span> Exception<span class="token punctuation">(</span><span class="token string">'403登录失败'</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> resp<span class="token punctuation">.</span>cookies
+
+
+<span class="token keyword">def</span> <span class="token function">get_checkCode</span><span class="token punctuation">(</span>resp<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    code <span class="token operator">=</span> re<span class="token punctuation">.</span>findall<span class="token punctuation">(</span><span class="token string">r"checkCode.*'(.*)'"</span><span class="token punctuation">,</span> resp<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> code<span class="token punctuation">:</span>
+        <span class="token keyword">return</span> code<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">raise</span> Exception<span class="token punctuation">(</span><span class="token string">"checkCode解析失败"</span><span class="token punctuation">)</span>
+
+
+<span class="token comment"># 学生健康登记</span>
+<span class="token keyword">def</span> <span class="token function">checkin1</span><span class="token punctuation">(</span>cookies<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    checkCode <span class="token operator">=</span> get_checkCode<span class="token punctuation">(</span>requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>api_apply<span class="token punctuation">,</span> cookies<span class="token operator">=</span>cookies<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    params_c1 <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token string">'formId'</span><span class="token punctuation">:</span> <span class="token string">'1651'</span><span class="token punctuation">,</span>
+    <span class="token string">'formAppId'</span><span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+    <span class="token string">'version'</span><span class="token punctuation">:</span> <span class="token string">'2'</span><span class="token punctuation">,</span>
+    <span class="token string">'formData'</span><span class="token punctuation">:</span> <span class="token string">'[&#123;"linkInfo":&#123;"linkFormType":"","condFields":[],"linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false,"currFormCondFieldId":0&#125;,"compt":"selectbox","otherAllowed":false,"layoutRatio":1,"latestValShow":true,"id":13,"optionsLoadFromUrl":&#123;"isLoadFromUrl":false,"response":[],"url":[],"urlHeaders":[]&#125;,"fields":[&#123;"visible":true,"editable":true,"values":[&#123;"val":"📌这里需要填写你所在的学院，同时再后面内容找到你所在的院系，将前面的false改为true📌"&#125;],"options":[&#123;"idArr":[],"checked":false,"title":"钒钛学院"&#125;,&#123;"idArr":[],"checked":false,"title":"经济与管理学院"&#125;,&#123;"idArr":[],"checked":false,"title":"交通与汽车工程学院"&#125;,&#123;"idArr":[],"checked":false,"title":"康养学院"&#125;,&#123;"idArr":[],"checked":false,"title":"人文社科学院"&#125;,&#123;"idArr":[],"checked":false,"title":"生物与化学工程学院"&#125;,&#123;"idArr":[],"checked":false,"title":"数学与计算机学院"&#125;,&#123;"idArr":[],"checked":false,"title":"土木与建筑工程学院"&#125;,&#123;"idArr":[],"checked":false,"title":"外国语学院"&#125;,&#123;"idArr":[],"checked":false,"title":"艺术学院"&#125;,&#123;"idArr":[],"checked":false,"title":"医学院"&#125;,&#123;"idArr":[],"checked":false,"title":"智能制造学院"&#125;,&#123;"idArr":[],"checked":false,"title":"研究生处"&#125;],"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"label":"二级学院","fieldType":&#123;"type":"string"&#125;&#125;],"optionScoreShow":false,"optionScoreUsed":false,"optionBindInfo":&#123;"bindFieldId":0,"bindFieldIdx":-1,"isBinded":false,"bindFormId":0,"originalOptions":[&#123;"idArr":[],"checked":false,"title":"选项1"&#125;,&#123;"idArr":[],"checked":false,"title":"选项2"&#125;,&#123;"idArr":[],"checked":false,"title":"选项3"&#125;]&#125;,"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"linkFormType":"","condFields":[],"linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false,"currFormCondFieldId":0&#125;,"compt":"editinput","layoutRatio":1,"formula":&#123;"selIndex":-1,"calculateFieldId":0,"status":false&#125;,"latestValShow":false,"id":1,"fields":[&#123;"visible":true,"values":[&#123;"val":"📌这里填写你的年级专业班级📌"&#125;],"verify":&#123;"unique":&#123;"errMsg":"此项内容已存在，不允许重复提交","open":false&#125;,"format":&#123;"type":""&#125;,"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"label":"年级、专业、班级","sweepCode":false,"fieldType":&#123;"type":"string"&#125;,"codeChangeable":false,"editable":true&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"compt":"radiobutton","otherAllowed":false,"comptCombined":true,"layoutRatio":1,"latestValShow":true,"id":2,"fields":[&#123;"visible":true,"values":[&#123;"val":"健康","isOther":false&#125;],"options":[&#123;"idArr":[],"checked":true,"title":"健康"&#125;,&#123;"idArr":[11],"checked":false,"title":"有发烧/咳嗽等症状"&#125;,&#123;"idArr":[],"checked":false,"title":"其他"&#125;],"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"label":"健康状况","fieldType":&#123;"type":"string"&#125;,"editable":true&#125;],"optionScoreShow":false,"optionScoreUsed":false,"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"linkFormType":"","condFields":[],"linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false,"currFormCondFieldId":0&#125;,"compt":"editinput","layoutRatio":1,"formula":&#123;"selIndex":-1,"calculateFieldId":0,"status":false&#125;,"latestValShow":false,"id":3,"fields":[&#123;"visible":true,"values":[&#123;"val":"📌这里填写你的省市区📌"&#125;],"verify":&#123;"unique":&#123;"errMsg":"此项内容已存在，不允许重复提交","open":false&#125;,"format":&#123;"type":""&#125;,"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"label":"当前所在省、市、县（区）","sweepCode":false,"fieldType":&#123;"type":"string"&#125;,"codeChangeable":false,"editable":true&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"compt":"radiobutton","otherAllowed":false,"comptCombined":true,"layoutRatio":1,"latestValShow":true,"id":14,"fields":[&#123;"visible":true,"values":[&#123;"val":"否","isOther":false&#125;],"options":[&#123;"idArr":[11],"checked":false,"title":"是"&#125;,&#123;"idArr":[],"checked":true,"title":"否"&#125;],"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"label":"14天内是否曾前往疫情防控重点区域","fieldType":&#123;"type":"string"&#125;,"editable":true&#125;],"optionScoreShow":false,"optionScoreUsed":false,"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"compt":"radiobutton","otherAllowed":false,"comptCombined":true,"layoutRatio":1,"latestValShow":true,"id":4,"fields":[&#123;"visible":true,"values":[&#123;"val":"否","isOther":false&#125;],"options":[&#123;"idArr":[11],"checked":false,"title":"是"&#125;,&#123;"idArr":[],"checked":true,"title":"否"&#125;],"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"label":"14天内是否有与高危人员有密切接触历史","fieldType":&#123;"type":"string"&#125;,"editable":true&#125;],"optionScoreShow":false,"optionScoreUsed":false,"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"compt":"radiobutton","otherAllowed":false,"comptCombined":true,"layoutRatio":1,"latestValShow":true,"id":5,"fields":[&#123;"visible":true,"values":[&#123;"val":"否","isOther":false&#125;],"options":[&#123;"idArr":[11],"checked":false,"title":"是"&#125;,&#123;"idArr":[],"checked":true,"title":"否"&#125;],"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"label":"家中或亲人是否有感染者或疑似感染者","fieldType":&#123;"type":"string"&#125;,"editable":true&#125;],"optionScoreShow":false,"optionScoreUsed":false,"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"compt":"radiobutton","otherAllowed":false,"comptCombined":true,"layoutRatio":1,"latestValShow":true,"id":6,"fields":[&#123;"visible":true,"values":[&#123;"val":"否","isOther":false&#125;],"options":[&#123;"idArr":[11,7,8],"checked":false,"title":"是"&#125;,&#123;"idArr":[],"checked":true,"title":"否"&#125;],"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"label":"自己是否为疑似病例","fieldType":&#123;"type":"string"&#125;,"editable":true&#125;],"optionScoreShow":false,"optionScoreUsed":false,"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"compt":"radiobutton","otherAllowed":false,"comptCombined":true,"layoutRatio":1,"latestValShow":true,"id":7,"fields":[&#123;"visible":true,"values":[],"options":[&#123;"idArr":[11],"checked":false,"title":"是"&#125;,&#123;"idArr":[],"checked":false,"title":"否"&#125;],"verify":&#123;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"label":"是否被隔离","fieldType":&#123;"type":"string"&#125;,"editable":true&#125;],"optionScoreShow":false,"optionScoreUsed":false,"inDetailGroupIndex":-1,"fromDetail":false,"isShow":false,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"linkFormType":"","condFields":[],"linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false,"currFormCondFieldId":0&#125;,"compt":"editinput","layoutRatio":1,"formula":&#123;"selIndex":-1,"calculateFieldId":0,"status":false&#125;,"latestValShow":false,"id":8,"fields":[&#123;"visible":true,"values":[&#123;"val":""&#125;],"verify":&#123;"unique":&#123;"errMsg":"此项内容已存在，不允许重复提交","open":false&#125;,"format":&#123;"type":""&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"label":"隔离地点","sweepCode":false,"fieldType":&#123;"type":"string"&#125;,"codeChangeable":false,"editable":true&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":false,"hasAuthority":true&#125;,&#123;"compt":"radiobutton","otherAllowed":false,"comptCombined":true,"layoutRatio":1,"latestValShow":true,"id":9,"fields":[&#123;"visible":true,"values":[&#123;"val":"否","isOther":false&#125;],"options":[&#123;"idArr":[11,10],"checked":false,"title":"是"&#125;,&#123;"idArr":[],"checked":true,"title":"否"&#125;],"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"label":"是否已确诊病例","fieldType":&#123;"type":"string"&#125;,"editable":true&#125;],"optionScoreShow":false,"optionScoreUsed":false,"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"linkFormType":"","condFields":[],"linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false,"currFormCondFieldId":0&#125;,"compt":"editinput","layoutRatio":1,"formula":&#123;"selIndex":-1,"calculateFieldId":0,"status":false&#125;,"latestValShow":false,"id":10,"fields":[&#123;"visible":true,"values":[&#123;"val":""&#125;],"verify":&#123;"unique":&#123;"errMsg":"此项内容已存在，不允许重复提交","open":false&#125;,"format":&#123;"type":""&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"label":"住院地点","sweepCode":false,"fieldType":&#123;"type":"string"&#125;,"codeChangeable":false,"editable":true&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":false,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"linkFormType":"","condFields":[],"linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false,"currFormCondFieldId":0&#125;,"compt":"edittextarea","layoutRatio":1,"latestValShow":false,"id":11,"fields":[&#123;"visible":true,"values":[&#123;"val":""&#125;],"verify":&#123;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"label":"需要说明的情况","fieldType":&#123;"type":"string"&#125;,"editable":true&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":false,"hasAuthority":true&#125;]'</span><span class="token punctuation">,</span>
+    <span class="token string">'uniqueCondition'</span><span class="token punctuation">:</span> <span class="token string">'[]'</span><span class="token punctuation">,</span>
+    <span class="token string">'t'</span><span class="token punctuation">:</span> <span class="token string">'1'</span><span class="token punctuation">,</span>
+    <span class="token string">'enc'</span><span class="token punctuation">:</span> <span class="token string">'3e98bd89c8ce6bcabf08dbad8553f3c1'</span><span class="token punctuation">,</span>
+    <span class="token string">'checkCode'</span><span class="token punctuation">:</span> checkCode<span class="token punctuation">,</span>
+    <span class="token string">'gatherId'</span><span class="token punctuation">:</span> <span class="token string">'0'</span><span class="token punctuation">,</span>
+    <span class="token string">'gverify'</span><span class="token punctuation">:</span> <span class="token string">''</span>
+  <span class="token punctuation">&#125;</span>
+    url <span class="token operator">=</span> api_save <span class="token operator">%</span> <span class="token punctuation">(</span>cookies<span class="token punctuation">[</span><span class="token string">'_uid'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    resp <span class="token operator">=</span> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span>url<span class="token punctuation">,</span> params<span class="token operator">=</span>params_c1<span class="token punctuation">,</span> cookies<span class="token operator">=</span>cookies<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token string">'每个用户每日填写1次，您的提交已达上限哦~'</span> <span class="token keyword">in</span> resp<span class="token punctuation">.</span>text <span class="token keyword">or</span> <span class="token string">'"success":true'</span> <span class="token keyword">in</span> resp<span class="token punctuation">.</span>text<span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">'健康登记打卡成功或已打卡过'</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>resp<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token string">'健康登记打卡失败'</span>
+
+
+<span class="token comment"># 定位打卡</span>
+<span class="token keyword">def</span> <span class="token function">checkin2</span><span class="token punctuation">(</span>cookies<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    checkCode <span class="token operator">=</span> get_checkCode<span class="token punctuation">(</span>requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>api_apply<span class="token punctuation">,</span> cookies<span class="token operator">=</span>cookies<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    params_c2 <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+        <span class="token string">'formId'</span><span class="token punctuation">:</span><span class="token string">'8273'</span><span class="token punctuation">,</span>
+        <span class="token string">'formAppId'</span><span class="token punctuation">:</span><span class="token string">''</span><span class="token punctuation">,</span>
+        <span class="token string">'version'</span><span class="token punctuation">:</span><span class="token string">'1'</span><span class="token punctuation">,</span>
+        <span class="token string">'formData'</span><span class="token punctuation">:</span><span class="token string">'[&#123;"compt":"location","id":1,"fields":[&#123;"verify":&#123;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"label":"定位","fieldType":&#123;"type":"point"&#125;,"editable":true,"visible":true,"values":[&#123;"address":"%s","lng":104.083898,"lat":30.759099&#125;]&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;]'</span><span class="token operator">%</span> <span class="token punctuation">(</span>address<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token string">'uniqueCondition'</span><span class="token punctuation">:</span><span class="token string">'[]'</span><span class="token punctuation">,</span><span class="token string">'t'</span><span class="token punctuation">:</span><span class="token string">'1'</span><span class="token punctuation">,</span>
+        <span class="token string">'enc'</span><span class="token punctuation">:</span><span class="token string">'61d91ce3a502d4f32332ed15d8c42e33'</span><span class="token punctuation">,</span>
+        <span class="token string">'checkCode'</span><span class="token punctuation">:</span>checkCode<span class="token punctuation">,</span>
+        <span class="token string">'gatherId'</span><span class="token punctuation">:</span><span class="token string">'0'</span><span class="token punctuation">,</span>
+        <span class="token string">'gverify'</span><span class="token punctuation">:</span><span class="token string">''</span>
+    <span class="token punctuation">&#125;</span>
+    url <span class="token operator">=</span> api_save <span class="token operator">%</span> <span class="token punctuation">(</span>cookies<span class="token punctuation">[</span><span class="token string">'_uid'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    resp <span class="token operator">=</span> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span>url<span class="token punctuation">,</span> params<span class="token operator">=</span>params_c2<span class="token punctuation">,</span> cookies<span class="token operator">=</span>cookies<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token string">'每个用户每日填写1次，您的提交已达上限哦~'</span> <span class="token keyword">in</span> resp<span class="token punctuation">.</span>text <span class="token keyword">or</span> <span class="token string">'"success":true'</span> <span class="token keyword">in</span> resp<span class="token punctuation">.</span>text<span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">'定位打卡成功或已打卡过'</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>resp<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token string">'定位打卡失败'</span>
+
+
+<span class="token comment"># 每日健康上报</span>
+<span class="token keyword">def</span> <span class="token function">checkin3</span><span class="token punctuation">(</span>cookies<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    checkCode <span class="token operator">=</span> get_checkCode<span class="token punctuation">(</span>requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>api_apply<span class="token punctuation">,</span> cookies<span class="token operator">=</span>cookies<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    params_c3 <span class="token operator">=</span> quote<span class="token punctuation">(</span>
+        <span class="token string">'[&#123;"compt":"captiontext","layoutRatio":1,"alias":"1","id":1,"fields":[&#123;"visible":true,"editable":false,"tip":&#123;"imgs":[],"text":"&lt;p style=\\"text-align: center;\\">&lt;span style=\\"font-size: x-large;\\">学生基本信息&lt;/span>&lt;/p>&lt;p style=\\"text-align: center;\\">&lt;span style=\\"font-size: medium;\\">以下信息涉及公共安全，要求每位学生如实填报&lt;/span>&lt;/p>"&#125;,"label":"说明文字","fieldType":&#123;"type":"string"&#125;&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":false&#125;,&#123;"linkInfo":&#123;"condFields":[],"linkFormType":"","linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false&#125;,"compt":"contact","loginUserForValue":true,"layoutRatio":1,"alias":"44","id":44,"fields":[&#123;"hasDefaultValue":true,"visible":true,"editable":false,"values":[&#123;"puid":%s,"uname":"%s"&#125;],"name":"点击选择人员","verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[]","label":"学生姓名","sweepCode":false,"fieldType":&#123;"multiple":false,"type":"contact"&#125;&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"condFields":[],"linkFormType":"","linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false&#125;,"compt":"editinput","layoutRatio":1,"alias":"45","formula":&#123;"selIndex":-1,"calculateFieldId":0,"status":false&#125;,"latestValShow":false,"id":45,"fields":[&#123;"hasDefaultValue":false,"visible":true,"editable":true,"values":[&#123;"val":"%s"&#125;],"verify":&#123;"charLimit":&#123;"size":20,"open":false&#125;,"regularExpress":&#123;"errorTip":"格式错误!","express":""&#125;,"unique":&#123;"errMsg":"此项内容已存在，不允许重复提交","open":false&#125;,"format":&#123;"type":""&#125;,"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"\\"&#125;]","label":"学号","sweepCode":false,"fieldType":&#123;"type":"string"&#125;,"codeChangeable":false&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"condFields":[],"linkFormType":"","linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false&#125;,"compt":"editinput","layoutRatio":1,"alias":"46","formula":&#123;"selIndex":-1,"calculateFieldId":0,"status":false&#125;,"latestValShow":false,"id":46,"fields":[&#123;"hasDefaultValue":false,"visible":true,"editable":true,"values":[&#123;"val":"%s"&#125;],"verify":&#123;"charLimit":&#123;"size":20,"open":false&#125;,"regularExpress":&#123;"errorTip":"格式错误!","express":""&#125;,"unique":&#123;"errMsg":"此项内容已存在，不允许重复提交","open":false&#125;,"format":&#123;"type":""&#125;,"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"\\"&#125;]","label":"学院","sweepCode":false,"fieldType":&#123;"type":"string"&#125;,"codeChangeable":false&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"condFields":[],"linkFormType":"","linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false&#125;,"compt":"editinput","layoutRatio":1,"alias":"48","formula":&#123;"selIndex":-1,"calculateFieldId":0,"status":false&#125;,"latestValShow":false,"id":48,"fields":[&#123;"hasDefaultValue":false,"visible":true,"editable":true,"values":[&#123;"val":"%s"&#125;],"verify":&#123;"charLimit":&#123;"size":20,"open":false&#125;,"regularExpress":&#123;"errorTip":"格式错误!","express":""&#125;,"unique":&#123;"errMsg":"此项内容已存在，不允许重复提交","open":false&#125;,"format":&#123;"type":""&#125;,"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"\\"&#125;]","label":"专业班级","sweepCode":false,"fieldType":&#123;"type":"string"&#125;,"codeChangeable":false&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"condFields":[&#123;"linkFormCondFieldId":6,"linkFormCondFieldCompt":"contact","currFormCondFieldId":44&#125;],"linkFormType":"customForm","linkFormId":92598,"linkFormValueFieldCompt":"editinput","linkFormIdEnc":"6490576bf20c15e2b37ff7e6b44cf382","linkFormValueFieldId":7,"linked":true,"currFormValueFieldId":3,"currFormValueFieldCompt":"editinput"&#125;,"compt":"editinput","layoutRatio":1,"alias":"3","formula":&#123;"selIndex":-1,"calculateFieldId":"0","status":false&#125;,"latestValShow":false,"id":3,"fields":[&#123;"hasDefaultValue":false,"visible":true,"editable":true,"values":[&#123;"val":"%s"&#125;],"verify":&#123;"charLimit":&#123;"size":20,"open":false&#125;,"regularExpress":&#123;"errorTip":"格式错误!","express":""&#125;,"unique":&#123;"errMsg":"此项内容已存在，不允许重复提交","open":false&#125;,"format":&#123;"type":""&#125;,"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"\\"&#125;]","label":"身份证号","sweepCode":false,"fieldType":&#123;"type":"string"&#125;,"codeChangeable":false&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"condFields":[&#123;"linkFormCondFieldId":6,"linkFormCondFieldCompt":"contact","currFormCondFieldId":44&#125;],"linkFormType":"customForm","linkFormId":92598,"linkFormValueFieldCompt":"editinput","linkFormIdEnc":"6490576bf20c15e2b37ff7e6b44cf382","linkFormValueFieldId":5,"linked":true,"currFormValueFieldId":4,"currFormValueFieldCompt":"editinput"&#125;,"compt":"editinput","layoutRatio":1,"alias":"4","formula":&#123;"selIndex":-1,"calculateFieldId":"0","status":false&#125;,"latestValShow":false,"id":4,"fields":[&#123;"hasDefaultValue":false,"visible":true,"editable":true,"values":[&#123;"val":"%s"&#125;],"verify":&#123;"charLimit":&#123;"size":20,"open":false&#125;,"regularExpress":&#123;"errorTip":"格式错误!","express":""&#125;,"unique":&#123;"errMsg":"此项内容已存在，不允许重复提交","open":false&#125;,"format":&#123;"type":"mobile"&#125;,"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"\\"&#125;]","label":"联系电话","sweepCode":false,"fieldType":&#123;"type":"string"&#125;,"codeChangeable":false&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"compt":"location","layoutRatio":1,"alias":"6","distanceRange":100,"id":6,"fields":[&#123;"visible":true,"editable":true,"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"label":"当前位置","fieldType":&#123;"type":"point"&#125;,"values":[&#123;"address":"%s","lng":%s,"lat":%s&#125;]&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"condFields":[&#123;"linkFormCondFieldId":1,"linkFormCondFieldCompt":"contact","currFormCondFieldId":44&#125;],"linkFormType":"customForm","linkFormId":92596,"linkFormValueFieldCompt":"numberinput","linkFormIdEnc":"dfd6989f283227cde9e82fee8033771a","linkFormValueFieldId":2,"linked":true,"currFormValueFieldId":58,"currFormValueFieldCompt":"numberinput"&#125;,"compt":"numberinput","layoutRatio":1,"alias":"58","latestValShow":false,"id":58,"fields":[&#123;"hasDefaultValue":false,"capital":false,"visible":false,"editable":false,"values":[&#123;"val":""&#125;],"defaultValueStr":"[&#123;\\"val\\":\\"\\"&#125;]","label":"上报次数","placeholderMsg":"","micrometer":false,"statsable":false,"verify":&#123;"minValue":&#123;"errMsg":"输入的值不能小于","range":""&#125;,"realNumber":&#123;"isInteger":false,"precision":"","errMsg":"请输入正确的数字类型值"&#125;,"maxValue":&#123;"errMsg":"输入的值不能大于","range":""&#125;&#125;,"tip":&#123;"imgs":[],"text":"(选填)"&#125;,"fieldType":&#123;"type":"number"&#125;&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":false&#125;,&#123;"compt":"captiontext","layoutRatio":1,"alias":"7","id":7,"fields":[&#123;"visible":true,"editable":false,"tip":&#123;"imgs":[],"text":"&lt;p style=\\"text-align: center;\\">&lt;span style=\\"font-size: x-large;\\">健康状态填写&lt;/span>&lt;/p>"&#125;,"label":"说明文字","fieldType":&#123;"type":"string"&#125;&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":false&#125;,&#123;"compt":"radiobutton","otherAllowed":false,"comptCombined":true,"layoutRatio":1,"alias":"8","latestValShow":true,"id":8,"optionColor":true,"fields":[&#123;"hasDefaultValue":true,"visible":true,"editable":true,"values":[&#123;"val":"否","isOther":false&#125;],"options":[&#123;"idArr":[],"score":0,"color":"","checked":true,"className":"color6","title":"否"&#125;,&#123;"idArr":[],"score":0,"color":"","checked":false,"className":"color2","title":"是"&#125;],"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"否\\"&#125;]","label":"自测体温是否超过37.3℃","fieldType":&#123;"type":"string"&#125;&#125;],"optionScoreShow":false,"optionScoreUsed":false,"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"compt":"checklist","otherAllowed":false,"comptCombined":true,"layoutRatio":1,"alias":"9","latestValShow":true,"id":9,"optionColor":false,"fields":[&#123;"hasDefaultValue":true,"visible":true,"editable":true,"values":[&#123;"val":"健康"&#125;],"options":[&#123;"idArr":[],"score":0,"color":"","checked":true,"className":"","title":"健康"&#125;,&#123;"idArr":[],"score":0,"color":"","checked":false,"className":"","title":"出现发热、咳嗽、乏力、咽痛、腹泻、呼吸困难"&#125;,&#123;"idArr":[10],"score":0,"color":"","checked":false,"className":"","title":"其他身体不适"&#125;],"verify":&#123;"minValue":&#123;"errMsg":"输入的值不能小于","range":"0"&#125;,"maxValue":&#123;"errMsg":"输入的值不能大于","range":"0"&#125;,"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"健康\\"&#125;]","label":"当前身体状况","fieldType":&#123;"type":"string"&#125;&#125;],"optionScoreShow":false,"optionScoreUsed":false,"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"condFields":[],"linkFormType":"","linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false&#125;,"compt":"edittextarea","layoutRatio":1,"alias":"10","latestValShow":true,"id":10,"fields":[&#123;"hasDefaultValue":false,"visible":true,"editable":true,"values":[],"verify":&#123;"charLimit":&#123;"size":200,"open":false&#125;,"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"\\"&#125;]","label":"其他身体不适情况说明","fieldType":&#123;"type":"string"&#125;&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":false,"hasAuthority":true&#125;,&#123;"compt":"radiobutton","otherAllowed":false,"comptCombined":true,"layoutRatio":1,"alias":"11","latestValShow":true,"id":11,"optionColor":true,"fields":[&#123;"hasDefaultValue":true,"visible":true,"editable":true,"values":[&#123;"val":"否","isOther":false&#125;],"options":[&#123;"idArr":[],"score":0,"color":"","checked":true,"className":"color6","title":"否"&#125;,&#123;"idArr":[12],"score":0,"color":"","checked":false,"className":"color2","title":"是"&#125;],"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"否\\"&#125;]","label":"本人近14天内是否为确诊/疑似患者或无症状感染者","fieldType":&#123;"type":"string"&#125;&#125;],"optionScoreShow":false,"optionScoreUsed":false,"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"condFields":[],"linkFormType":"","linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false&#125;,"compt":"edittextarea","layoutRatio":1,"alias":"12","latestValShow":true,"id":12,"fields":[&#123;"hasDefaultValue":false,"visible":true,"editable":true,"values":[],"verify":&#123;"charLimit":&#123;"size":200,"open":false&#125;,"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"\\"&#125;]","label":"情况说明","fieldType":&#123;"type":"string"&#125;&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":false,"hasAuthority":true&#125;,&#123;"compt":"radiobutton","otherAllowed":false,"comptCombined":true,"layoutRatio":1,"alias":"13","latestValShow":true,"id":13,"optionColor":true,"fields":[&#123;"hasDefaultValue":true,"visible":true,"editable":true,"values":[&#123;"val":"否","isOther":false&#125;],"options":[&#123;"idArr":[],"score":0,"color":"","checked":true,"className":"color6","title":"否"&#125;,&#123;"idArr":[14],"score":0,"color":"","checked":false,"className":"color2","title":"是"&#125;],"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"否\\"&#125;]","label":"本人近14天内是否接触过确诊/疑似病例或无症状感染者","fieldType":&#123;"type":"string"&#125;&#125;],"optionScoreShow":false,"optionScoreUsed":false,"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"condFields":[],"linkFormType":"","linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false&#125;,"compt":"edittextarea","layoutRatio":1,"alias":"14","latestValShow":true,"id":14,"fields":[&#123;"hasDefaultValue":false,"visible":true,"editable":true,"values":[],"verify":&#123;"charLimit":&#123;"size":200,"open":false&#125;,"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"\\"&#125;]","label":"情况说明","fieldType":&#123;"type":"string"&#125;&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":false,"hasAuthority":true&#125;,&#123;"compt":"radiobutton","otherAllowed":false,"comptCombined":true,"layoutRatio":1,"alias":"15","latestValShow":true,"id":15,"optionColor":true,"fields":[&#123;"hasDefaultValue":true,"visible":true,"editable":true,"values":[&#123;"val":"否","isOther":false&#125;],"options":[&#123;"idArr":[],"score":0,"color":"","checked":true,"className":"color6","title":"否"&#125;,&#123;"idArr":[16],"score":0,"color":"","checked":false,"className":"color2","title":"是"&#125;],"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"否\\"&#125;]","label":"本人近14天内是否有国内疫情防控中高风险区旅居史","fieldType":&#123;"type":"string"&#125;&#125;],"optionScoreShow":false,"optionScoreUsed":false,"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"condFields":[],"linkFormType":"","linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false&#125;,"compt":"edittextarea","layoutRatio":1,"alias":"16","latestValShow":true,"id":16,"fields":[&#123;"hasDefaultValue":false,"visible":true,"editable":true,"values":[],"verify":&#123;"charLimit":&#123;"size":200,"open":false&#125;,"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"\\"&#125;]","label":"情况说明","fieldType":&#123;"type":"string"&#125;&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":false,"hasAuthority":true&#125;,&#123;"compt":"radiobutton","otherAllowed":false,"comptCombined":true,"layoutRatio":1,"alias":"17","latestValShow":true,"id":17,"optionColor":true,"fields":[&#123;"hasDefaultValue":true,"visible":true,"editable":true,"values":[&#123;"val":"否","isOther":false&#125;],"options":[&#123;"idArr":[],"score":0,"color":"","checked":true,"className":"color6","title":"否"&#125;,&#123;"idArr":[18],"score":0,"color":"","checked":false,"className":"color2","title":"是"&#125;],"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"否\\"&#125;]","label":"本人近14天内是否接触国内疫情防控中高风险区返乡人员","fieldType":&#123;"type":"string"&#125;&#125;],"optionScoreShow":false,"optionScoreUsed":false,"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"condFields":[],"linkFormType":"","linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false&#125;,"compt":"edittextarea","layoutRatio":1,"alias":"18","latestValShow":true,"id":18,"fields":[&#123;"hasDefaultValue":false,"visible":true,"editable":true,"values":[],"verify":&#123;"charLimit":&#123;"size":200,"open":false&#125;,"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"\\"&#125;]","label":"情况说明","fieldType":&#123;"type":"string"&#125;&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":false,"hasAuthority":true&#125;,&#123;"compt":"radiobutton","otherAllowed":false,"comptCombined":true,"layoutRatio":1,"alias":"19","latestValShow":true,"id":19,"optionColor":true,"fields":[&#123;"hasDefaultValue":true,"visible":true,"editable":true,"values":[&#123;"val":"否","isOther":false&#125;],"options":[&#123;"idArr":[],"score":0,"color":"","checked":true,"className":"color6","title":"否"&#125;,&#123;"idArr":[20],"score":0,"color":"","checked":false,"className":"color2","title":"是"&#125;],"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"否\\"&#125;]","label":"本人近14天内是否有国（境）外旅居史","fieldType":&#123;"type":"string"&#125;&#125;],"optionScoreShow":false,"optionScoreUsed":false,"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"condFields":[],"linkFormType":"","linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false&#125;,"compt":"edittextarea","layoutRatio":1,"alias":"20","latestValShow":true,"id":20,"fields":[&#123;"hasDefaultValue":false,"visible":true,"editable":true,"values":[],"verify":&#123;"charLimit":&#123;"size":200,"open":false&#125;,"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"\\"&#125;]","label":"情况说明","fieldType":&#123;"type":"string"&#125;&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":false,"hasAuthority":true&#125;,&#123;"compt":"radiobutton","otherAllowed":false,"comptCombined":true,"layoutRatio":1,"alias":"21","latestValShow":true,"id":21,"optionColor":true,"fields":[&#123;"hasDefaultValue":true,"visible":true,"editable":true,"values":[&#123;"val":"否","isOther":false&#125;],"options":[&#123;"idArr":[],"score":0,"color":"","checked":true,"className":"color6","title":"否"&#125;,&#123;"idArr":[22],"score":0,"color":"","checked":false,"className":"color2","title":"是"&#125;],"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"否\\"&#125;]","label":"本人近14天内是否接触过国（境）外返回人员","fieldType":&#123;"type":"string"&#125;&#125;],"optionScoreShow":false,"optionScoreUsed":false,"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"condFields":[],"linkFormType":"","linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false&#125;,"compt":"edittextarea","layoutRatio":1,"alias":"22","latestValShow":true,"id":22,"fields":[&#123;"hasDefaultValue":false,"visible":true,"editable":true,"values":[],"verify":&#123;"charLimit":&#123;"size":200,"open":false&#125;,"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"\\"&#125;]","label":"情况说明","fieldType":&#123;"type":"string"&#125;&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":false,"hasAuthority":true&#125;,&#123;"compt":"radiobutton","otherAllowed":false,"comptCombined":true,"layoutRatio":1,"alias":"23","latestValShow":true,"id":23,"optionColor":true,"fields":[&#123;"hasDefaultValue":true,"visible":true,"editable":true,"values":[&#123;"val":"否","isOther":false&#125;],"options":[&#123;"idArr":[],"score":0,"color":"","checked":true,"className":"color6","title":"否"&#125;,&#123;"idArr":[24],"score":0,"color":"","checked":false,"className":"color2","title":"是"&#125;],"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"否\\"&#125;]","label":"共同生活亲属近14天内是否出现发热、咳嗽、乏力、咽痛、腹泻、等身体症状","fieldType":&#123;"type":"string"&#125;&#125;],"optionScoreShow":false,"optionScoreUsed":false,"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"condFields":[],"linkFormType":"","linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false&#125;,"compt":"edittextarea","layoutRatio":1,"alias":"24","latestValShow":true,"id":24,"fields":[&#123;"hasDefaultValue":false,"visible":true,"editable":true,"values":[],"verify":&#123;"charLimit":&#123;"size":200,"open":false&#125;,"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"\\"&#125;]","label":"情况说明","fieldType":&#123;"type":"string"&#125;&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":false,"hasAuthority":true&#125;,&#123;"compt":"radiobutton","otherAllowed":false,"comptCombined":true,"layoutRatio":1,"alias":"25","latestValShow":true,"id":25,"optionColor":true,"fields":[&#123;"hasDefaultValue":true,"visible":true,"editable":true,"values":[&#123;"val":"否","isOther":false&#125;],"options":[&#123;"idArr":[],"score":0,"color":"","checked":true,"className":"color6","title":"否"&#125;,&#123;"idArr":[26],"score":0,"color":"","checked":false,"className":"color2","title":"是"&#125;],"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"否\\"&#125;]","label":"共同生活亲属近14天内是否为确诊/疑似患者或无症状感染者","fieldType":&#123;"type":"string"&#125;&#125;],"optionScoreShow":false,"optionScoreUsed":false,"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"condFields":[],"linkFormType":"","linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false&#125;,"compt":"edittextarea","layoutRatio":1,"alias":"26","latestValShow":true,"id":26,"fields":[&#123;"hasDefaultValue":false,"visible":true,"editable":true,"values":[],"verify":&#123;"charLimit":&#123;"size":200,"open":false&#125;,"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"\\"&#125;]","label":"情况说明","fieldType":&#123;"type":"string"&#125;&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":false,"hasAuthority":true&#125;,&#123;"compt":"radiobutton","otherAllowed":false,"comptCombined":true,"layoutRatio":1,"alias":"27","latestValShow":true,"id":27,"optionColor":true,"fields":[&#123;"hasDefaultValue":true,"visible":true,"editable":true,"values":[&#123;"val":"否","isOther":false&#125;],"options":[&#123;"idArr":[],"score":0,"color":"","checked":true,"className":"color6","title":"否"&#125;,&#123;"idArr":[28],"score":0,"color":"","checked":false,"className":"color2","title":"是"&#125;],"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"否\\"&#125;]","label":"共同生活亲属近14天内是否接触过确诊/疑似病例或无症状感染者","fieldType":&#123;"type":"string"&#125;&#125;],"optionScoreShow":false,"optionScoreUsed":false,"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"condFields":[],"linkFormType":"","linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false&#125;,"compt":"edittextarea","layoutRatio":1,"alias":"28","latestValShow":true,"id":28,"fields":[&#123;"hasDefaultValue":false,"visible":true,"editable":true,"values":[],"verify":&#123;"charLimit":&#123;"size":200,"open":false&#125;,"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"\\"&#125;]","label":"情况说明","fieldType":&#123;"type":"string"&#125;&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":false,"hasAuthority":true&#125;,&#123;"compt":"radiobutton","otherAllowed":false,"comptCombined":true,"layoutRatio":1,"alias":"29","latestValShow":true,"id":29,"optionColor":true,"fields":[&#123;"hasDefaultValue":true,"visible":true,"editable":true,"values":[&#123;"val":"否","isOther":false&#125;],"options":[&#123;"idArr":[],"score":0,"color":"","checked":true,"className":"color6","title":"否"&#125;,&#123;"idArr":[30],"score":0,"color":"","checked":false,"className":"color2","title":"是"&#125;],"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"否\\"&#125;]","label":"共同生活亲属近14天内是否有国内疫情防控中高风险区旅居史","fieldType":&#123;"type":"string"&#125;&#125;],"optionScoreShow":false,"optionScoreUsed":false,"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"condFields":[],"linkFormType":"","linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false&#125;,"compt":"edittextarea","layoutRatio":1,"alias":"30","latestValShow":true,"id":30,"fields":[&#123;"hasDefaultValue":false,"visible":true,"editable":true,"values":[],"verify":&#123;"charLimit":&#123;"size":200,"open":false&#125;,"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"\\"&#125;]","label":"情况说明","fieldType":&#123;"type":"string"&#125;&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":false,"hasAuthority":true&#125;,&#123;"compt":"radiobutton","otherAllowed":false,"comptCombined":true,"layoutRatio":1,"alias":"31","latestValShow":true,"id":31,"optionColor":true,"fields":[&#123;"hasDefaultValue":true,"visible":true,"editable":true,"values":[&#123;"val":"否","isOther":false&#125;],"options":[&#123;"idArr":[],"score":0,"color":"","checked":true,"className":"color6","title":"否"&#125;,&#123;"idArr":[32],"score":0,"color":"","checked":false,"className":"color2","title":"是"&#125;],"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"否\\"&#125;]","label":"共同生活亲属近14天内是否接触国内疫情防控中高风险区返乡人员","fieldType":&#123;"type":"string"&#125;&#125;],"optionScoreShow":false,"optionScoreUsed":false,"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"condFields":[],"linkFormType":"","linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false&#125;,"compt":"edittextarea","layoutRatio":1,"alias":"32","latestValShow":true,"id":32,"fields":[&#123;"hasDefaultValue":false,"visible":true,"editable":true,"values":[],"verify":&#123;"charLimit":&#123;"size":200,"open":false&#125;,"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"\\"&#125;]","label":"情况说明","fieldType":&#123;"type":"string"&#125;&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":false,"hasAuthority":true&#125;,&#123;"compt":"radiobutton","otherAllowed":false,"comptCombined":true,"layoutRatio":1,"alias":"33","latestValShow":true,"id":33,"optionColor":true,"fields":[&#123;"hasDefaultValue":true,"visible":true,"editable":true,"values":[&#123;"val":"否","isOther":false&#125;],"options":[&#123;"idArr":[],"score":0,"color":"","checked":true,"className":"color6","title":"否"&#125;,&#123;"idArr":[34],"score":0,"color":"","checked":false,"className":"color2","title":"是"&#125;],"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"否\\"&#125;]","label":"共同生活亲属近14天内是否有国（境）外旅居史","fieldType":&#123;"type":"string"&#125;&#125;],"optionScoreShow":false,"optionScoreUsed":false,"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"condFields":[],"linkFormType":"","linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false&#125;,"compt":"edittextarea","layoutRatio":1,"alias":"34","latestValShow":true,"id":34,"fields":[&#123;"hasDefaultValue":false,"visible":true,"editable":true,"values":[],"verify":&#123;"charLimit":&#123;"size":200,"open":false&#125;,"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"\\"&#125;]","label":"情况说明","fieldType":&#123;"type":"string"&#125;&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":false,"hasAuthority":true&#125;,&#123;"compt":"radiobutton","otherAllowed":false,"comptCombined":true,"layoutRatio":1,"alias":"35","latestValShow":true,"id":35,"optionColor":true,"fields":[&#123;"hasDefaultValue":true,"visible":true,"editable":true,"values":[&#123;"val":"否","isOther":false&#125;],"options":[&#123;"idArr":[],"score":0,"color":"","checked":true,"className":"color6","title":"否"&#125;,&#123;"idArr":[36],"score":0,"color":"","checked":false,"className":"color2","title":"是"&#125;],"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"否\\"&#125;]","label":"共同生活亲属近14天内是否接触过国（境）外返回人员","fieldType":&#123;"type":"string"&#125;&#125;],"optionScoreShow":false,"optionScoreUsed":false,"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"condFields":[],"linkFormType":"","linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false&#125;,"compt":"edittextarea","layoutRatio":1,"alias":"36","latestValShow":true,"id":36,"fields":[&#123;"hasDefaultValue":false,"visible":true,"editable":true,"values":[],"verify":&#123;"charLimit":&#123;"size":200,"open":false&#125;,"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"\\"&#125;]","label":"情况说明","fieldType":&#123;"type":"string"&#125;&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":false,"hasAuthority":true&#125;,&#123;"compt":"captiontext","layoutRatio":1,"alias":"37","id":37,"fields":[&#123;"visible":true,"editable":false,"tip":&#123;"imgs":[],"text":"&lt;p style=\\"text-align: center;\\">&lt;span style=\\"font-size: x-large;\\">出行情况&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span>&lt;br>&lt;/p>"&#125;,"label":"说明文字","fieldType":&#123;"type":"string"&#125;&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":false&#125;,&#123;"compt":"radiobutton","otherAllowed":false,"comptCombined":true,"layoutRatio":1,"alias":"38","latestValShow":true,"id":38,"optionColor":true,"fields":[&#123;"hasDefaultValue":true,"visible":true,"editable":true,"values":[&#123;"val":"否","isOther":false&#125;],"options":[&#123;"idArr":[],"score":0,"color":"","checked":true,"className":"color6","title":"否"&#125;,&#123;"idArr":[39,41,42,43],"score":0,"color":"","checked":false,"className":"color2","title":"是"&#125;],"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"否\\"&#125;]","label":"当日是否有外出活动（跨市）","fieldType":&#123;"type":"string"&#125;&#125;],"optionScoreShow":false,"optionScoreUsed":false,"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"compt":"datetimerange","visible":true,"editable":true,"layoutRatio":1,"alias":"39","verify":&#123;"dateRange":&#123;"isInclude":false,"errMsg":"开始时间不能晚于结束时间","format":"yyyy-MM-dd HH:mm"&#125;,"validateRange":&#123;"beginDate":"","dynamicRangeStartValue":1,"dynamicRangeEndValue":1,"rangeType":0,"endDate":"","errMsg":"请输入合法的日期范围","dynamicRangeStartType":1,"dynamicRangeEndType":3&#125;,"required":&#123;&#125;&#125;,"id":39,"fields":[&#123;"tip":&#123;"imgs":[],"text":"请选择"&#125;,"label":"外出开始时间","fieldType":&#123;"format":"yyyy-MM-dd HH:mm","type":"date"&#125;,"values":[]&#125;,&#123;"tip":&#123;"imgs":[],"text":"请选择"&#125;,"label":"预计结束时间","fieldType":&#123;"format":"yyyy-MM-dd HH:mm","type":"date"&#125;,"values":[]&#125;,&#123;"label":"时长","fieldType":&#123;"unit":"hour","calculate":true,"type":"timerange"&#125;,"values":[]&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":false,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"condFields":[],"linkFormType":"","linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false&#125;,"compt":"areamultiselect","level":3,"layoutRatio":1,"alias":"41","latestValShow":true,"id":41,"fields":[&#123;"hasDefaultValue":false,"visible":true,"multiOptions":[],"editable":true,"values":[],"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"\\"&#125;,&#123;\\"val\\":\\"\\"&#125;,&#123;\\"val\\":\\"\\"&#125;,&#123;\\"val\\":\\"\\"&#125;]","label":"外出目的地","fieldType":&#123;"type":"multibox"&#125;&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":false,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"condFields":[],"linkFormType":"","linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false&#125;,"compt":"areamultiselect","level":2,"layoutRatio":1,"alias":"42","latestValShow":false,"id":42,"fields":[&#123;"hasDefaultValue":false,"visible":true,"multiOptions":[],"editable":true,"values":[],"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"\\"&#125;,&#123;\\"val\\":\\"\\"&#125;]","label":"外出途径地","fieldType":&#123;"type":"multibox"&#125;&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":false,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"condFields":[],"linkFormType":"","linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false&#125;,"compt":"editinput","layoutRatio":1,"alias":"43","formula":&#123;"selIndex":-1,"calculateFieldId":"0","status":false&#125;,"latestValShow":false,"id":43,"fields":[&#123;"hasDefaultValue":false,"visible":true,"editable":true,"values":[],"verify":&#123;"charLimit":&#123;"size":20,"open":false&#125;,"regularExpress":&#123;"errorTip":"格式错误!","express":""&#125;,"unique":&#123;"errMsg":"此项内容已存在，不允许重复提交","open":false&#125;,"format":&#123;"type":""&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"\\"&#125;]","label":"外出交通工具（例：自驾、长途汽车、火车、飞机等）","sweepCode":false,"fieldType":&#123;"type":"string"&#125;,"codeChangeable":false&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":false,"hasAuthority":true&#125;,&#123;"compt":"captiontext","layoutRatio":1,"alias":"49","id":49,"fields":[&#123;"visible":true,"editable":false,"tip":&#123;"imgs":[],"text":"&lt;p style=\\"text-align: center;\\">&lt;font size=\\"5\\">疫苗接种信息采集&lt;/font>&lt;/p>"&#125;,"label":"说明文字","fieldType":&#123;"type":"string"&#125;&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":false&#125;,&#123;"compt":"radiobutton","otherAllowed":false,"comptCombined":true,"layoutRatio":1,"alias":"50","latestValShow":true,"id":50,"optionColor":true,"fields":[&#123;"hasDefaultValue":true,"visible":true,"editable":true,"values":[&#123;"val":"是","isOther":false&#125;],"options":[&#123;"idArr":[52,53],"score":0,"color":"","checked":true,"className":"color6","title":"是"&#125;,&#123;"idArr":[54],"score":0,"color":"","checked":false,"className":"color2","title":"否"&#125;],"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"是\\"&#125;]","label":"是否已接种新冠疫苗","fieldType":&#123;"type":"string"&#125;&#125;],"optionScoreShow":false,"optionScoreUsed":false,"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"condFields":[],"linkFormType":"","linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false&#125;,"compt":"dateinput","layoutRatio":1,"alias":"52","latestValShow":true,"id":52,"fields":[&#123;"hasDefaultValue":false,"dayIndex":0,"visible":true,"editable":true,"values":[&#123;"val":"%s"&#125;],"appoint":false,"verify":&#123;"validateRange":&#123;"beginDate":"","dynamicRangeStartValue":1,"dynamicRangeEndValue":1,"rangeType":0,"endDate":"","errMsg":"请输入合法的日期范围","dynamicRangeStartType":1,"dynamicRangeEndType":3&#125;,"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"\\"&#125;]","label":"第一针接种时间","fieldType":&#123;"format":"yyyy-MM-dd","type":"date"&#125;&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"condFields":[],"linkFormType":"","linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false&#125;,"compt":"dateinput","layoutRatio":1,"alias":"53","latestValShow":true,"id":53,"fields":[&#123;"hasDefaultValue":false,"dayIndex":0,"visible":true,"editable":true,"values":[&#123;"val":"%s"&#125;],"appoint":false,"verify":&#123;"validateRange":&#123;"beginDate":"","dynamicRangeStartValue":1,"dynamicRangeEndValue":1,"rangeType":0,"endDate":"","errMsg":"请输入合法的日期范围","dynamicRangeStartType":1,"dynamicRangeEndType":3&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"\\"&#125;]","label":"第二针接种时间","fieldType":&#123;"format":"yyyy-MM-dd","type":"date"&#125;&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"linkInfo":&#123;"condFields":[],"linkFormType":"","linkFormId":0,"linkFormValueFieldCompt":"","linkFormIdEnc":"","linkFormValueFieldId":0,"linked":false&#125;,"compt":"editinput","layoutRatio":1,"alias":"54","formula":&#123;"selIndex":-1,"calculateFieldId":"0","status":false&#125;,"latestValShow":true,"id":54,"fields":[&#123;"hasDefaultValue":false,"visible":true,"editable":true,"values":[],"verify":&#123;"charLimit":&#123;"size":20,"open":false&#125;,"regularExpress":&#123;"errorTip":"格式错误!","express":""&#125;,"unique":&#123;"errMsg":"此项内容已存在，不允许重复提交","open":false&#125;,"format":&#123;"type":""&#125;,"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[&#123;\\"val\\":\\"\\"&#125;]","label":"未接种原因","sweepCode":false,"fieldType":&#123;"type":"string"&#125;,"codeChangeable":false&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":false,"hasAuthority":true&#125;,&#123;"compt":"radiobutton","otherAllowed":false,"comptCombined":true,"layoutRatio":1,"alias":"55","latestValShow":false,"id":55,"optionColor":true,"fields":[&#123;"hasDefaultValue":false,"visible":true,"editable":true,"values":[&#123;"val":"是","isOther":false&#125;],"options":[&#123;"idArr":[],"score":100,"color":"","checked":true,"className":"color6","title":"是"&#125;,&#123;"idArr":[],"score":0,"color":"","checked":false,"className":"color2","title":"否"&#125;],"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"defaultValueStr":"[]","label":"本人承诺：以上信息填报真实有效。本人严格遵守相关防疫工作要求，及时、准确向学校申报健康状况、接触情况、出行行程安排等，并认真做好个人防护。","fieldType":&#123;"type":"string"&#125;&#125;],"optionScoreShow":false,"optionScoreUsed":true,"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;,&#123;"compt":"signature","layoutRatio":1,"alias":"56","id":56,"fields":[&#123;"visible":true,"editable":true,"values":[&#123;"val":"%s"&#125;],"verify":&#123;"required":&#123;&#125;&#125;,"tip":&#123;"imgs":[],"text":""&#125;,"label":"手写签名","fieldType":&#123;"type":"signature"&#125;&#125;],"inDetailGroupIndex":-1,"fromDetail":false,"isShow":true,"hasAuthority":true&#125;]'</span>
+        <span class="token operator">%</span> <span class="token punctuation">(</span>cookies<span class="token punctuation">[</span><span class="token string">'_uid'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> name<span class="token punctuation">,</span> stunum<span class="token punctuation">,</span> college<span class="token punctuation">,</span> classs<span class="token punctuation">,</span> idc<span class="token punctuation">,</span> phone<span class="token punctuation">,</span> address<span class="token punctuation">,</span>
+           lin<span class="token punctuation">,</span> lat<span class="token punctuation">,</span> first<span class="token punctuation">,</span> second<span class="token punctuation">,</span> signature<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+    params_c3 <span class="token operator">=</span> <span class="token string">'formId=92597&amp;formAppId=&amp;version=0&amp;formData='</span> <span class="token operator">+</span> params_c3 <span class="token operator">+</span> <span class="token string">'&amp;ext=&amp;t=1&amp;enc=e8a70d13bac504a2ec42ad5d72aa8abd&amp;checkCode=%s&amp;gatherId=0&amp;anonymous=0&amp;uniqueCondition=[]&amp;gverify='</span> <span class="token operator">%</span> <span class="token punctuation">(</span>
+        checkCode<span class="token punctuation">)</span>
+    url <span class="token operator">=</span> api_save <span class="token operator">%</span> <span class="token punctuation">(</span>cookies<span class="token punctuation">[</span><span class="token string">'_uid'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    resp <span class="token operator">=</span> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span>url<span class="token punctuation">,</span> params<span class="token operator">=</span>params_c3<span class="token punctuation">,</span> cookies<span class="token operator">=</span>cookies<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token string">'每个用户只能填写1次，您的提交已达上限哦~'</span> <span class="token keyword">in</span> resp<span class="token punctuation">.</span>text <span class="token keyword">or</span> <span class="token string">'"success":true'</span> <span class="token keyword">in</span> resp<span class="token punctuation">.</span>text<span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">'每日健康上报打卡成功或已打卡过'</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>resp<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token string">'每日健康上报打卡失败'</span>
+
+
+<span class="token comment"># 云函数入口</span>
+<span class="token keyword">def</span> <span class="token function">main_handler</span><span class="token punctuation">(</span>event<span class="token punctuation">,</span> context<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    cookies <span class="token operator">=</span> login<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> checkin1<span class="token punctuation">(</span>cookies<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'\n'</span> <span class="token operator">+</span> checkin2<span class="token punctuation">(</span>cookies<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'\n'</span> <span class="token operator">+</span> checkin3<span class="token punctuation">(</span>
+        cookies<span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>main_handler<span class="token punctuation">(</span><span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>本地测试通过</p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212020408353.png" srcset="/img/loading.gif" lazyload alt="image-20210212020408353"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212020504083.png" srcset="/img/loading.gif" lazyload alt="image-20210212020504083"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212020551151.png" srcset="/img/loading.gif" lazyload alt="image-20210212020551151"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212020625136.png" srcset="/img/loading.gif" lazyload alt="image-20210212020625136"></p>
+<h1 id="部署到云函数或者github-action"><a href="#部署到云函数或者github-action" class="headerlink" title="部署到云函数或者github action"></a>部署到云函数或者github action</h1><p>我这里选择部署到国内运营商的云函数，因为比较稳定（并不，github action也是可以的。</p>
+<p>这里是阿里云函数服务的流程。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212021739139.png" srcset="/img/loading.gif" lazyload alt="image-20210212021739139"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212021756288.png" srcset="/img/loading.gif" lazyload alt="image-20210212021756288"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212021835137.png" srcset="/img/loading.gif" lazyload alt="image-20210212021835137"></p>
+<p>翻车😭</p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212022307621.png" srcset="/img/loading.gif" lazyload alt="image-20210212022307621"></p>
+<p>没找到原因，直接换了腾讯云函数碰碰运气，结果就可以了？？？ 为什么啊（腾讯云函数的操作和阿里的大差不差</p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212022447353.png" srcset="/img/loading.gif" lazyload alt="image-20210212022447353"></p>
+<p>然后设置一个每天自动打卡的触发器</p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212022524763.png" srcset="/img/loading.gif" lazyload alt="image-20210212022524763"></p>
+<p>大年初一凌晨2.26，我居然在搞这个玩意。。。</p>
+<p>脑子有点迷迷糊糊的，写的比较混乱，很多地方之前没截图就跳过了😂，有不懂可以发评论😂（会有人看吗😐，同时欢迎大佬指点。</p>
+<p>顶不住了，睡了睡了。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%9E%8E%E6%90%9E/">瞎搞</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%88%AC%E8%99%AB/">爬虫</a>
+                    
+                      <a class="hover-with-bg" href="/tags/python/">python</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%8A%93%E5%8C%85/">抓包</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/2/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">记一个蒟蒻的简单社工</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/0/">
+                        <span class="hidden-mobile">背包九讲笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"7tjF5JCu7wQ1ab33DKTPp7ho-MdYXbMMI","appKey":"Wjpwi3j1A5dxyOWySsj5KKoR","placeholder":"说点什么  PS:昵称填入QQ号自动获取QQ昵称和QQ头像，邮箱用以获取回复通知","path":"window.location.pathname","avatar":"retro","meta":["nick","mail","link"],"pageSize":30,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://7tjf5jcu.api.lncldglobal.com:443","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"requiredFields":["nick"],"visitor":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?662be03e63d68d42e11056e174b1af40";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+    <!-- Google Analytics -->
+    <script defer>
+      window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) };
+      ga.l = +new Date;
+      ga('create', 'UA-149292816-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+  
+
+  
+    <!-- Google gtag.js -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M35ZXK3R5R"></script>
+    <script defer>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-M35ZXK3R5R');
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    <!-- leancloud -->
+    <span id="/posts/1/" class="leancloud_visitors" data-flag-title="学习通自动打卡">
+      <!-- <hide>
+        <em class="post-meta-item-text">阅读量 </em></hide>
+        <i class="leancloud-visitors-count"></i>
+      </hide> -->
+    </span>
+  
+
+
+
+
+  
+<script src="/js/oopstls.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
