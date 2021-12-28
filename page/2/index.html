@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
@@ -9,16 +9,26 @@
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" href="/img/favicon.png">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="acm | algorithm | blog | ctf | ml">
   <meta name="author" content="TLS">
   <meta name="keywords" content="ACM, Algorithm, CTF">
+  
+    <meta name="description" content="acm | algorithm | blog | ctf | ml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TLS&#39;s Blog">
+<meta property="og:url" content="https://oopstls.xyz/page/2/index.html">
+<meta property="og:site_name" content="TLS&#39;s Blog">
+<meta property="og:description" content="acm | algorithm | blog | ctf | ml">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="TLS">
+<meta property="article:tag" content="ACM, Algorithm, CTF">
+<meta name="twitter:card" content="summary_large_image">
+  
   
   <title>TLS&#39;s Blog</title>
 
@@ -46,7 +56,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"oopstls.xyz","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"662be03e63d68d42e11056e174b1af40","google":"UA-149292816-2","gtag":"G-M35ZXK3R5R","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"7tjF5JCu7wQ1ab33DKTPp7ho-MdYXbMMI","app_key":"Wjpwi3j1A5dxyOWySsj5KKoR","server_url":null}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"oopstls.xyz","root":"/","version":"1.8.13","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"662be03e63d68d42e11056e174b1af40","google":"UA-149292816-2","gtag":"G-M35ZXK3R5R","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"7tjF5JCu7wQ1ab33DKTPp7ho-MdYXbMMI","app_key":"Wjpwi3j1A5dxyOWySsj5KKoR","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -57,8 +67,9 @@
   <header style="height: 100vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>TLS</strong>&nbsp;</a>
+    <a class="navbar-brand" href="/">
+      <strong>TLS</strong>
+    </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -144,13 +155,14 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
           </li>
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self">&nbsp;<i
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -214,14 +226,7 @@
       <p class="index-excerpt">
         <a href="/posts/6597126a/" target="_self">
           
-          
-            
-          
-          【素数筛】 埃氏筛 欧拉筛（线性筛）​    素数筛是一种用来筛选自然数n以内全部素数的算法。
-埃氏筛 (Sieve of Eratosthenes)
-​    埃氏筛的原理很容易理解，任意一个合数都可以表示成一个自然数i和一个素数的乘积，因此，如上图，筛出素数的倍数，剩下的就是素数。
-代码//在primes中值为true的是合数 
-bool primes[MAXN] = &#123;1, 1, 
+          【素数筛】 埃氏筛 欧拉筛（线性筛）​    素数筛是一种用来筛选自然数n以内全部素数的算法。 埃氏筛 (Sieve of Eratosthenes) ​    埃氏筛的原理很容易理解，任意一个合数都可以表示成一个自然数i和一个素数的乘积，因此，如上图，筛出素数的倍数，剩下的就是素数。 代码&#x2F;&#x2F;在primes中值为true的是合数  bool primes[MAXN] &#x3D; &amp;#123;1, 1,
         </a>
       </p>
 
@@ -280,13 +285,7 @@ bool primes[MAXN] = &#123;1, 1,
       <p class="index-excerpt">
         <a href="/posts/e49c5017/" target="_self">
           
-          
-            
-          
-          【POJ】1426 Find The Multiple (BFS/DFS)
-题目链接：poj-1426
-
-Description Given a positive integer n, write a program to find out a nonzero multiple m of n whose decimal representation contains only the digits
+          【POJ】1426 Find The Multiple (BFS&#x2F;DFS) 题目链接：poj-1426  Description Given a positive integer n, write a program to find out a nonzero multiple m of n whose decimal representation contains only the digits
         </a>
       </p>
 
@@ -311,11 +310,11 @@ Description Given a positive integer n, write a program to find out a nonzero mu
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
+              <a href="/tags/BFS/">BFS</a>
+            
               <a href="/tags/DFS/">DFS</a>
             
               <a href="/tags/POJ/">POJ</a>
-            
-              <a href="/tags/BFS/">BFS</a>
             
           </div>
         
@@ -343,13 +342,7 @@ Description Given a positive integer n, write a program to find out a nonzero mu
       <p class="index-excerpt">
         <a href="/posts/a4cbd5d6/" target="_self">
           
-          
-            
-          
-          【POJ】 3278 Catch That Cow (BFS + 剪枝)
-题目链接：poj 3278
-
-DescriptionFarmer John has been informed of the location of a fugitive cow and wants to catch her immediately. He starts at a point N (0 ≤ N ≤ 100,0
+          【POJ】 3278 Catch That Cow (BFS + 剪枝) 题目链接：poj 3278  DescriptionFarmer John has been informed of the location of a fugitive cow and wants to catch her immediately. He starts at a point N (0 ≤ N ≤ 100,0
         </a>
       </p>
 
@@ -374,9 +367,9 @@ DescriptionFarmer John has been informed of the location of a fugitive cow and w
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/POJ/">POJ</a>
-            
               <a href="/tags/BFS/">BFS</a>
+            
+              <a href="/tags/POJ/">POJ</a>
             
               <a href="/tags/%E5%89%AA%E6%9E%9D/">剪枝</a>
             
@@ -406,13 +399,7 @@ DescriptionFarmer John has been informed of the location of a fugitive cow and w
       <p class="index-excerpt">
         <a href="/posts/a07a2a/" target="_self">
           
-          
-            
-          
-          【POJ】 2251 Dungeon Master (BFS)
-题目链接：poj-2251
-
-Description You are trapped in a 3D dungeon and need to find the quickest way out! The dungeon is composed of unit cubes which may or may not be filled w
+          【POJ】 2251 Dungeon Master (BFS) 题目链接：poj-2251  Description You are trapped in a 3D dungeon and need to find the quickest way out! The dungeon is composed of unit cubes which may or may not be filled w
         </a>
       </p>
 
@@ -437,9 +424,9 @@ Description You are trapped in a 3D dungeon and need to find the quickest way ou
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/POJ/">POJ</a>
-            
               <a href="/tags/BFS/">BFS</a>
+            
+              <a href="/tags/POJ/">POJ</a>
             
           </div>
         
@@ -467,15 +454,7 @@ Description You are trapped in a 3D dungeon and need to find the quickest way ou
       <p class="index-excerpt">
         <a href="/posts/47786f48/" target="_self">
           
-          
-            
-          
-          【POJ】1321 棋盘问题 (DFS)
- 题目链接：poj-1321
-
-Description 在一个给定形状的棋盘（形状可能是不规则的）上面摆放棋子，棋子没有区别。要求摆放时任意的两个棋子不能放在棋盘中的同一行或者同一列，请编程求解对于给定形状和大小的棋盘，摆放k个棋子的所有可行的摆放方案C。 
-
-Input 输入含有多组测试数据。每组数据的第一行是两个正整数，n k，用一个空格隔开，表示了将
+          【POJ】1321 棋盘问题 (DFS)  题目链接：poj-1321  Description 在一个给定形状的棋盘（形状可能是不规则的）上面摆放棋子，棋子没有区别。要求摆放时任意的两个棋子不能放在棋盘中的同一行或者同一列，请编程求解对于给定形状和大小的棋盘，摆放k个棋子的所有可行的摆放方案C。   Input 输入含有多组测试数据。每组数据的第一行是两个正整数，n k，用一个空格隔开，表示了将
         </a>
       </p>
 
@@ -530,20 +509,7 @@ Input 输入含有多组测试数据。每组数据的第一行是两个正整�
       <p class="index-excerpt">
         <a href="/posts/928b7e4b/" target="_self">
           
-          
-            
-          
-          【leetcode】链表题目训练[206, 24, 141, 142, 25]题目一：206. Reverse Linked List​    题目：Reverse a singly linked list.
-
-理解：反转一个单项链表
-难度：easy
-
-解法：
-思路：头节点开始依次往后遍历链表，并更改每一个节点的next指针为前一个结点的地址
-代码
-
-class Solution &#123;
-p
+          【leetcode】链表题目训练[206, 24, 141, 142, 25]题目一：206. Reverse Linked List​    题目：Reverse a singly linked list.  理解：反转一个单项链表 难度：easy  解法： 思路：头节点开始依次往后遍历链表，并更改每一个节点的next指针为前一个结点的地址 代码  class Solution &amp;#123; p
         </a>
       </p>
 
@@ -598,7 +564,7 @@ p
     
 
     
-      <a id="scroll-top-button" href="#" role="button">
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
         <i class="iconfont icon-arrowup" aria-hidden="true"></i>
       </a>
     
@@ -664,6 +630,10 @@ p
 <!-- Plugins -->
 
 
+  <script  src="/js/local-search.js" ></script>
+
+
+
   
     <script  src="/js/img-lazyload.js" ></script>
   
@@ -679,18 +649,6 @@ p
 
 
 
-
-
-
-  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
   <script defer src="/js/leancloud.js" ></script>
 
 
@@ -701,7 +659,7 @@ p
       var typing = Fluid.plugins.typing;
       var title = document.getElementById('subtitle').title;
       
-      typing(title)
+        typing(title);
       
     })(window, document);
   </script>
@@ -756,16 +714,6 @@ p
 
   
 
-  
-
-  
-    <!-- leancloud -->
-    <span id="/page/2/index.html" class="leancloud_visitors" data-flag-title="">
-      <!-- <hide>
-        <em class="post-meta-item-text">阅读量 </em></hide>
-        <i class="leancloud-visitors-count"></i>
-      </hide> -->
-    </span>
   
 
 

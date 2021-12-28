@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
@@ -9,16 +9,32 @@
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" href="/img/favicon.png">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="acm | algorithm | blog | ctf | ml">
   <meta name="author" content="TLS">
   <meta name="keywords" content="ACM, Algorithm, CTF">
+  
+    <meta name="description" content="【leetcode】链表题目训练[206, 24, 141, 142, 25]题目一：206. Reverse Linked List​    题目：Reverse a singly linked list.  理解：反转一个单项链表 难度：easy  解法： 思路：头节点开始依次往后遍历链表，并更改每一个节点的next指针为前一个结点的地址 代码  class Solution &amp;#123; p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode单向链表[206, 24, 141, 142, 25]">
+<meta property="og:url" content="https://oopstls.xyz/posts/928b7e4b/index.html">
+<meta property="og:site_name" content="TLS&#39;s Blog">
+<meta property="og:description" content="【leetcode】链表题目训练[206, 24, 141, 142, 25]题目一：206. Reverse Linked List​    题目：Reverse a singly linked list.  理解：反转一个单项链表 难度：easy  解法： 思路：头节点开始依次往后遍历链表，并更改每一个节点的next指针为前一个结点的地址 代码  class Solution &amp;#123; p">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://oopstls.xyz/img/posts/algo_index.png">
+<meta property="article:published_time" content="2019-10-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-05T04:37:22.933Z">
+<meta property="article:author" content="TLS">
+<meta property="article:tag" content="单向链表">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="Leetcode">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://oopstls.xyz/img/posts/algo_index.png">
+  
   
   <title>leetcode单向链表[206, 24, 141, 142, 25] - TLS&#39;s Blog</title>
 
@@ -51,7 +67,6 @@
   
 
 
-
 <!-- 主题依赖的图标库，不要自行修改 -->
 
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
@@ -72,7 +87,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"oopstls.xyz","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"662be03e63d68d42e11056e174b1af40","google":"UA-149292816-2","gtag":"G-M35ZXK3R5R","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"7tjF5JCu7wQ1ab33DKTPp7ho-MdYXbMMI","app_key":"Wjpwi3j1A5dxyOWySsj5KKoR","server_url":null}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"oopstls.xyz","root":"/","version":"1.8.13","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"662be03e63d68d42e11056e174b1af40","google":"UA-149292816-2","gtag":"G-M35ZXK3R5R","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"7tjF5JCu7wQ1ab33DKTPp7ho-MdYXbMMI","app_key":"Wjpwi3j1A5dxyOWySsj5KKoR","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -83,8 +98,9 @@
   <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>TLS</strong>&nbsp;</a>
+    <a class="navbar-brand" href="/">
+      <strong>TLS</strong>
+    </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -170,13 +186,14 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
           </li>
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self">&nbsp;<i
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -210,21 +227,18 @@
 
 <div class="mt-1">
   
-    
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1k 字
+      3.6k 字
     </span>
   
 
   
-    
     <span class="post-meta mr-2">
       <i class="iconfont icon-clock-fill"></i>
       
       
-      16
-       分钟
+      30 分钟
     </span>
   
 
@@ -528,18 +542,21 @@ public<span class="token operator">:</span>
                   
                 
                 
-  <div id="valine"></div>
+  <div id="twikoo"></div>
   <script type="text/javascript">
-    Fluid.utils.loadComments('#valine', function() {
-      Fluid.utils.createScript('https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/Valine.min.js', function() {
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/twikoo@1.4.14/dist/twikoo.all.min.js', function() {
         var options = Object.assign(
-          {"appId":"7tjF5JCu7wQ1ab33DKTPp7ho-MdYXbMMI","appKey":"Wjpwi3j1A5dxyOWySsj5KKoR","placeholder":"说点什么  PS:昵称填入QQ号自动获取QQ昵称和QQ头像，邮箱用以获取回复通知","path":"window.location.pathname","avatar":"retro","meta":["nick","mail","link"],"pageSize":30,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://7tjf5jcu.api.lncldglobal.com:443","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"requiredFields":["nick"],"visitor":true},
+          {"envId":"comments-blog-6gzz10dxf5310977","region":"ap-shanghai","path":"window.location.pathname"},
           {
-            el: "#valine",
-            path: window.location.pathname
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+            }
           }
         )
-        new Valine(options);
+        twikoo.init(options)
       });
     });
   </script>
@@ -570,7 +587,7 @@ public<span class="token operator">:</span>
     
 
     
-      <a id="scroll-top-button" href="#" role="button">
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
         <i class="iconfont icon-arrowup" aria-hidden="true"></i>
       </a>
     
@@ -636,6 +653,10 @@ public<span class="token operator">:</span>
 <!-- Plugins -->
 
 
+  <script  src="/js/local-search.js" ></script>
+
+
+
   
     <script  src="/js/img-lazyload.js" ></script>
   
@@ -648,23 +669,18 @@ public<span class="token operator">:</span>
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
-
-
-
-  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+  
 
 
 
@@ -679,7 +695,7 @@ public<span class="token operator">:</span>
       var typing = Fluid.plugins.typing;
       var title = document.getElementById('subtitle').title;
       
-      typing(title)
+        typing(title);
       
     })(window, document);
   </script>
@@ -734,16 +750,6 @@ public<span class="token operator">:</span>
 
   
 
-  
-
-  
-    <!-- leancloud -->
-    <span id="/posts/928b7e4b/" class="leancloud_visitors" data-flag-title="leetcode单向链表[206, 24, 141, 142, 25]">
-      <!-- <hide>
-        <em class="post-meta-item-text">阅读量 </em></hide>
-        <i class="leancloud-visitors-count"></i>
-      </hide> -->
-    </span>
   
 
 
