@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://oopstls.xyz/img/posts/xxt_covid-19_index.png">
 <meta property="article:published_time" content="2021-02-10T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-18T03:47:07.588Z">
+<meta property="article:modified_time" content="2022-11-18T04:22:52.158Z">
 <meta property="article:author" content="TLS">
 <meta property="article:tag" content="爬虫">
 <meta property="article:tag" content="python">
@@ -445,13 +445,13 @@ api_save4 <span class="token operator">=</span> <span class="token string">'http
 </ol>
 <p>平时打卡都是在学习通APP上进行的，所以直接在手机抓包分析。</p>
 <h2 id="登录流程"><a href="#登录流程" class="headerlink" title="登录流程"></a>登录流程</h2><p>APP到登录页面，然后打开抓包，然后登录，分析抓取到的请求，在众多请求包中一眼看到这个域名是passport开头的，点进来一看，好家伙，设置了13个cookie，多半是这个api没错了，再确认一下，看看请求内容，带了账号密码，那就是这个包在做登录操作了。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/oopstls/ImgHosting/blog/XXT_check-in/image-20210211110139434.png" srcset="/img/loading.gif" lazyload alt="image-20210211110139434"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/oopstls/ImgHosting/blog/XXT_check-in/image-20210211105918543.png" srcset="/img/loading.gif" lazyload alt="image-20210211105918543"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210211110139434.png" srcset="/img/loading.gif" lazyload alt="image-20210211110139434"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210211105918543.png" srcset="/img/loading.gif" lazyload alt="image-20210211105918543"></p>
 <p>测试看看，把这个api拿到浏览器上试试，验证通过，那没问题了。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/oopstls/ImgHosting/blog/XXT_check-in/image-20210211110359697.png" srcset="/img/loading.gif" lazyload alt="image-20210211110359697"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/oopstls/ImgHosting/blog/XXT_check-in/image-20210211110509172.png" srcset="/img/loading.gif" lazyload alt="image-20210211110509172"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210211110359697.png" srcset="/img/loading.gif" lazyload alt="image-20210211110359697"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210211110509172.png" srcset="/img/loading.gif" lazyload alt="image-20210211110509172"></p>
 <p>同时在刚刚手机上抓到的包中找到了学习通首页的url，后面的操作就可以在电脑上完成了，体验+。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/oopstls/ImgHosting/blog/XXT_check-in/image-20210212013902597.png" srcset="/img/loading.gif" lazyload alt="image-20210212013902597"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212013902597.png" srcset="/img/loading.gif" lazyload alt="image-20210212013902597"></p>
 <p>再然后就是一步一步的模拟打卡过程（其实就用浏览器的f12里面的network功能就行了</p>
 <p>整个打卡过程貌似有四次post请求。</p>
 <p>从域名上看😂😂</p>
@@ -461,10 +461,10 @@ api_save4 <span class="token operator">=</span> <span class="token string">'http
 <li>第三个是用来校验填写的内容是否合法的（不用校验也能进行第四步</li>
 <li>第四个是保存我们填写的信息的</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/oopstls/ImgHosting/blog/XXT_check-in/image-20210212015254019.png" srcset="/img/loading.gif" lazyload alt="image-20210212015254019"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/oopstls/ImgHosting/blog/XXT_check-in/image-20210212014858781.png" srcset="/img/loading.gif" lazyload alt="image-20210212014858781"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/oopstls/ImgHosting/blog/XXT_check-in/image-20210212015405610.png" srcset="/img/loading.gif" lazyload alt="image-20210212015405610"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/oopstls/ImgHosting/blog/XXT_check-in/image-20210212015539797.png" srcset="/img/loading.gif" lazyload alt="image-20210212015539797"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212015254019.png" srcset="/img/loading.gif" lazyload alt="image-20210212015254019"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212014858781.png" srcset="/img/loading.gif" lazyload alt="image-20210212014858781"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212015405610.png" srcset="/img/loading.gif" lazyload alt="image-20210212015405610"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212015539797.png" srcset="/img/loading.gif" lazyload alt="image-20210212015539797"></p>
 <p>经过一些测试，得出结论，我们只需要访问第一个api获取checkCode，然后用这个checkCode去第四个api保存我们的打卡信息就可以了。</p>
 <h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># -*- coding: utf8 -*-</span>
 <span class="token keyword">import</span> requests
@@ -604,21 +604,21 @@ api_last <span class="token operator">=</span> <span class="token string">'http:
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 
 <p>本地测试通过</p>
-<p><img src="https://cdn.jsdelivr.net/gh/oopstls/ImgHosting/blog/XXT_check-in/image-20210212020408353.png" srcset="/img/loading.gif" lazyload alt="image-20210212020408353"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/oopstls/ImgHosting/blog/XXT_check-in/image-20210212020504083.png" srcset="/img/loading.gif" lazyload alt="image-20210212020504083"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/oopstls/ImgHosting/blog/XXT_check-in/image-20210212020551151.png" srcset="/img/loading.gif" lazyload alt="image-20210212020551151"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/oopstls/ImgHosting/blog/XXT_check-in/image-20210212020625136.png" srcset="/img/loading.gif" lazyload alt="image-20210212020625136"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212020408353.png" srcset="/img/loading.gif" lazyload alt="image-20210212020408353"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212020504083.png" srcset="/img/loading.gif" lazyload alt="image-20210212020504083"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212020551151.png" srcset="/img/loading.gif" lazyload alt="image-20210212020551151"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212020625136.png" srcset="/img/loading.gif" lazyload alt="image-20210212020625136"></p>
 <h1 id="部署到云函数或者github-action"><a href="#部署到云函数或者github-action" class="headerlink" title="部署到云函数或者github action"></a>部署到云函数或者github action</h1><p>我这里选择部署到国内运营商的云函数，因为比较稳定（并不，github action也是可以的。</p>
 <p>这里是阿里云函数服务的流程。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/oopstls/ImgHosting/blog/XXT_check-in/image-20210212021739139.png" srcset="/img/loading.gif" lazyload alt="image-20210212021739139"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/oopstls/ImgHosting/blog/XXT_check-in/image-20210212021756288.png" srcset="/img/loading.gif" lazyload alt="image-20210212021756288"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/oopstls/ImgHosting/blog/XXT_check-in/image-20210212021835137.png" srcset="/img/loading.gif" lazyload alt="image-20210212021835137"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212021739139.png" srcset="/img/loading.gif" lazyload alt="image-20210212021739139"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212021756288.png" srcset="/img/loading.gif" lazyload alt="image-20210212021756288"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212021835137.png" srcset="/img/loading.gif" lazyload alt="image-20210212021835137"></p>
 <p>翻车😭</p>
-<p><img src="https://cdn.jsdelivr.net/gh/oopstls/ImgHosting/blog/XXT_check-in/image-20210212022307621.png" srcset="/img/loading.gif" lazyload alt="image-20210212022307621"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212022307621.png" srcset="/img/loading.gif" lazyload alt="image-20210212022307621"></p>
 <p>没找到原因，直接换了腾讯云函数碰碰运气，结果就可以了？？？ 为什么啊（腾讯云函数的操作和阿里的大差不差</p>
-<p><img src="https://cdn.jsdelivr.net/gh/oopstls/ImgHosting/blog/XXT_check-in/image-20210212022447353.png" srcset="/img/loading.gif" lazyload alt="image-20210212022447353"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212022447353.png" srcset="/img/loading.gif" lazyload alt="image-20210212022447353"></p>
 <p>然后设置一个每天自动打卡的触发器</p>
-<p><img src="https://cdn.jsdelivr.net/gh/oopstls/ImgHosting/blog/XXT_check-in/image-20210212022524763.png" srcset="/img/loading.gif" lazyload alt="image-20210212022524763"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/oopstls/PicBed/blog/XXT_check-in/image-20210212022524763.png" srcset="/img/loading.gif" lazyload alt="image-20210212022524763"></p>
 <p>大年初一凌晨2.26，我居然在搞这个玩意。。。</p>
 <p>脑子有点迷迷糊糊的，写的比较混乱，很多地方之前没截图就跳过了😂，有不懂可以发评论😂（会有人看吗😐，同时欢迎大佬指点。</p>
 <p>顶不住了，睡了睡了。</p>
